@@ -1,0 +1,189 @@
+﻿@model foodisgood.Models.OrderOffer
+
+@{
+    ViewBag.Title = "CreateCustomer";
+}
+
+<h2>Create</h2>
+
+<body>
+    <div>
+        <table class="table">
+            <tr class="dl-horizontal">
+                <th>
+                    @Html.DisplayNameFor(model => model.Offer.Name)
+                </th>
+
+                <th>
+                    @Html.DisplayFor(model => model.Offer.Name)
+                </th>
+            </tr>
+            <tr class="dl-horizontal">
+                <th>
+                    @Html.DisplayNameFor(model => model.Offer.PriceUnit)
+                </th>
+
+                <th>
+                    @Html.DisplayFor(model => model.Offer.PriceUnit)
+                </th>
+            </tr>
+            <tr class="dl-horizontal">
+                <th>
+                    @Html.DisplayNameFor(model => model.Offer.Quantity)
+                </th>
+
+                <th>
+                    @Html.DisplayFor(model => model.Offer.Quantity)
+                </th>
+            </tr>
+            <tr class="dl-horizontal">
+                <th>
+                    @Html.DisplayNameFor(model => model.Offer.CreateTime)
+                </th>
+
+                <th>
+                    @Html.DisplayFor(model => model.Offer.CreateTime)
+                </th>
+            </tr>
+            <tr class="dl-horizontal">
+                <th>
+                    @Html.DisplayNameFor(model => model.Offer.EndTime)
+                </th>
+
+                <th>
+                    @Html.DisplayFor(model => model.Offer.EndTime)
+                </th>
+            </tr>
+            <tr class="dl-horizontal">
+                <th>
+                    @Html.DisplayNameFor(model => model.Offer.OfferType)
+                </th>
+
+                <th>
+                    @Html.DisplayFor(model => model.Offer.OfferType)
+                </th>
+            </tr>
+            <tr class="dl-horizontal">
+                <th>
+                    @Html.DisplayNameFor(model => model.Offer.Description)
+                </th>
+
+                <th>
+                    @Html.DisplayFor(model => model.Offer.Description)
+                </th>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <br />
+        <div class="form-group">
+            Your data:
+        </div>
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Order.BuyerUser.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Order.BuyerUser.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Order.BuyerUser.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Order.BuyerUser.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Order.BuyerUser.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Order.BuyerUser.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Order.BuyerUser.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Order.BuyerUser.Location, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Order.BuyerUser.Location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Order.BuyerUser.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Order.BuyerUser.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Order.BuyerUser.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Order.BuyerUser.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Order.BuyerUser.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Order.BuyerUser.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            Seller data:
+        </div>
+        <br />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Offer.User.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Offer.User.FirstName, new { disabled = "disabled", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Offer.User.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Offer.User.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Offer.User.LastName, new { disabled = "disabled", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Offer.User.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Offer.User.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Offer.User.PhoneNumber, new { disabled = "disabled", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Offer.User.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+
+        <h4>Create an order:</h4>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <h4>Order</h4>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Order.DesiredQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Order.DesiredQuantity, new { htmlAttributes = new { @class = "form-control", min = "1" } })
+                    @Html.ValidationMessageFor(model => model.Order.DesiredQuantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div hidden class="form-group">
+                @Html.LabelFor(model => model.Order.OfferID, "OfferID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Order.OfferID, new { disabled = "disabled", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Order.OfferID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div hidden class="form-group">
+                @Html.LabelFor(model => model.Order.BuyerID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Order.BuyerID, new { disabled = "disabled", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Order.BuyerID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" name="response" value="Place Order" formaction=@Url.Action("PostOrderToOffer","Orders") formmethod="post" class="btn btn-primary" />
+                </div>
+            </div>
+        }
+    </div>
+</body>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+</html>

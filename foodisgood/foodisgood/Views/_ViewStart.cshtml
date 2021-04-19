@@ -1,0 +1,14 @@
+﻿@{
+    if (HttpContext.Current.User.IsInRole("AppAdmin"))
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else if (HttpContext.Current.User.IsInRole("Customer"))
+    {
+        Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+    }
+    else if (User.Identity.IsAuthenticated == false)
+    {
+        Layout = "~/Views/Shared/_LayoutGuest.cshtml";
+    }
+}
