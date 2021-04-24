@@ -6,6 +6,14 @@
 
 <h2>Index</h2>
 
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -34,31 +42,32 @@
 
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Product.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PriceUnit)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Quantity)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CreateTime)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.EndTime)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.OfferType)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Description)
-    </td>
-    <td>
-        @Html.ActionLink("Details", "Details", new { id = item.ID })
-    </td>
-</tr>}
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriceUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ID })
+            </td>
+        </tr>
+}
 
 </table>

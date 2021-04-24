@@ -2,186 +2,238 @@
     ViewBag.Title = "Home Page";
 }
 
-<style>
-    .bg-grey {
-        background-color: #f6f6f6;
-    }
-</style>
-
-
-
 <div class="jumbotron">
-    <h1>
-        Food Is Good - Home page <h1>
-            <p class="lead">Mens sana in corpore sano - sau ceva motto</p>
-            <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more about healthy lifestyle &raquo;</a></p>
-</div>
 
-<!-- First row with `what you ll find there`-->
-<div class="row">
-    <div id="portfolio" class="container-fluid text-center bg-grey">
-        <h2>Food which is good:</h2><br>
-        <h4>What you'll find here</h4>
-        <div class="row text-center slideanim">
-            <div class="col-sm-4">
-                <div class="thumbnail">
-                    <img src="@Url.Content("~/Content/Images/fructe6.png")" alt="Paris" style="width:500px; height:250px">
-                    <p><strong>Fruits</strong></p>
-                    <p>Stop drinking coca-cola and start eating fruits.</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="thumbnail">
-                    <img src="@Url.Content("~/Content/Images/fructe2.png")" alt="Paris" style="width:500px; height:250px">
-                    <p><strong>Fresh carrots</strong></p>
-                    <p>IT engineer? You're gonna need carrots for your eyes.</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="thumbnail">
-                    <img src="@Url.Content("~/Content/Images/fructe7.png")" alt="Paris" style="width:500px; height:250px">
-                    <p><strong>Ridichi</strong></p>
-                    <p>Nu stiu cum se zice la ridichi in engleza :(</p>
-                </div>
-            </div>
-        </div><br>
+    <style>
+        .container {
+            position: relative;
+            font-family: Arial;
+        }
 
-    </div>
-    <!-- end of the first section-->
-    <!-- Offers - click on them display text - second section-->
+        .text-block {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: black;
+            color: white;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .logo-small {
+            color: #f4511e;
+            font-size: 50px;
+        }
+
+        .logo {
+            color: #f4511e;
+            font-size: 200px;
+        }
+        .container img {
+            vertical-align: middle;
+        }
+        .glyphicon {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #f4511e;
+        }
+        .content {
+            position: absolute;
+            bottom: 0;
+            background: rgb(0, 0, 0); /* Fallback color */
+            background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+            color: #f1f1f1;
+            width: 97.4%;
+            padding: 20px;
+        }
+    </style>
 
 
-</div>
-<div class="row">
-    <h2>We appreciate our producers</h2><br>
-    <h4>The best producers of the week:</h4>
-
-
-    <div class="col-sm-4">
-        <p><strong>Radu</strong></p><br>
-        <a href="#demo" data-toggle="collapse">
-            <img src="@Url.Content("~/Content/Images/radu.png")" class="img-circle person" alt="Random Name" width="255" height="255">
-        </a>
-        <div id="demo" class="collapse">
-            <p>Mare agricultor</p>
-            <p>Cele mai bune leguminoase</p>
-            <p>Deva, RO</p>
+    <div class="container">
+        <img src="/content/images/cover5.png" style="width:100%">
+        <div class="content">
+            <h4>Healthy food</h4>
+            <p>Healthy life</p>
         </div>
     </div>
-    <div class="col-sm-4">
-        <p><strong>Radu din nou</strong></p><br>
-        <a href="#demo2" data-toggle="collapse">
-            <img src="@Url.Content("~/Content/Images/radu.png")" class="img-circle person" alt="Random Name" width="255" height="255">
-        </a>
-        <div id="demo2" class="collapse">
-            <p>Mare producator</p>
-            <p>Capsunile lui sunt preferate de casa regala</p>
-            <p>Cluj, RO</p>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <p><strong>Iar Radu</strong></p><br>
-        <a href="#demo3" data-toggle="collapse">
-            <img src="@Url.Content("~/Content/Images/radu.png")" class="img-circle person" alt="Random Name" width="255" height="255">
-        </a>
-        <div id="demo3" class="collapse">
-            <p>Locul 3 de data asta</p>
-            <p>Cartofii sunt #power pentru el</p>
-            <p>Turda, RO</p>
-        </div>
-    </div>
-</div>
-<!-- end of the second section-->
-<!-- some space-->
-<hr />
-<br />
-<br />
-<br />
-<!-- space-->
-<!-- Third section: quotes -->
 
-<div id="myCarousel" class="carousel slide text-center bg-grey" data-ride="carousel">
-    <br /><br /><br />
-    <h2>What our customers say</h2>
-    <br /><br /><br />
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+    <div class="jumbotron">
+        <h1>
+            Food Is Good - Home page </h1>
+    <p class="lead">Mens sana in corpore sano</p>
 
-    <hr />
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <h4>"This company is the best. I am so happy with the result!"<br><span>Dioane Radu, Team Leader</span></h4>
-        </div>
-        <div class="item">
-            <h4>"One word... WOW!(is this a `word`?)"<br><span>Dioane Radu, Team Leader</span></h4>
-        </div>
-        <div class="item">
-            <h4>"Could I... BE any more happy with this team?"<br><span>Dioane Radu, Team Leader</span></h4>
-        </div><hr />
-    </div>    <br /><br /><br />    <br /><br /><br />    <br /><br /><br />
-    <!-- end of quotes-->
-
+    <button class="btn btn-group btn-block">@Html.ActionLink("Offers", "Index", "Offers")</button>
 </div>
 
-<!-- Contact form from w3 bootstrap-->
-<div id="contact" class="container-fluid">
-    <br /><br /><br />
-    <h2 class="text-center">CONTACT</h2>
-    <br /><br /><br />
+    <!-- First row with `what you ll find there`-->
     <div class="row">
-        <div class="col-sm-5">
-            <p>Contact us and we'll get back to you within 24 hours.</p>
-            <p><span class="glyphicon glyphicon-map-marker"></span> Cluj-Napoca, RO</p>
-            <p><span class="glyphicon glyphicon-phone"></span> +00 1515151515</p>
-            <p><span class="glyphicon glyphicon-envelope"></span> foodisgood@gmail.com</p>
+        <div id="portfolio" class="container-fluid text-center bg-grey">
+
+            <h4>What you'll find here</h4>
+            <br /><br />
+            <div class="row text-center slideanim">
+
+                <div class="container-fluid text-center bg-grey">
+
+
+                    <div class="row text-center">
+                        <div class="col-sm-4">
+                            <div class="thumbnail">
+                                <img src="/Content/Images/first_page1.jpg" alt="Paris">
+                                <br />
+                                <p><strong>Fruits</strong></p>
+                                <p>Fresh, without artificial ingredients</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="thumbnail">
+                                <img src="/Content/Images/vegetables2.jpg" alt="New York"><br />
+                                <p><strong>Vegetables</strong></p>
+                                <p>Grown probably by your neighbours</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="thumbnail">
+                                <img src="/Content/Images/fundal_contact.jpg" alt="San Francisco"><br />
+                                <p><strong>The cleanest market</strong></p>
+                                <p>Local producers for local customers</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><br>
+
+            </div>
+            <!-- end of the first section-->
+            <!-- Offers - click on them display text - second section-->
+
+
         </div>
-        <div class="col-sm-7 slideanim">
+
+
+        <div class="container-fluid text-center">
+            <h2>SERVICES</h2><br />
+            <h4>What we offer</h4>
+            <br>
             <div class="row">
-                <div class="col-sm-6 form-group">
-                    <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                <div class="col-sm-4">
+                    <span class="glyphicon glyphicon-off"></span>
+                    <h4>POWER</h4>
+                    <p>Non-stop program work, even during the pandemy</p>
                 </div>
-                <div class="col-sm-6 form-group">
-                    <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                <div class="col-sm-4">
+                    <span class="glyphicon glyphicon-heart"></span>
+                    <h4>Care</h4>
+                    <p>Our producers grow vegetables with their love </p>
+                </div>
+                <div class="col-sm-4">
+                    <span class="glyphicon glyphicon-lock"></span>
+                    <h4>JOB DONE</h4>
+                    <p>Best delivery in town</p>
                 </div>
             </div>
-            <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+            <br><br>
             <div class="row">
-                <div class="col-sm-12 form-group">
-                    <button class="btn btn-default pull-right" type="submit">Send</button>
+                <div class="col-sm-4">
+                    <span class="glyphicon glyphicon-leaf"></span>
+                    <h4>GREEN</h4>
+                    <p>All we have are eco products</p>
+                </div>
+                <div class="col-sm-4">
+                    <span class="glyphicon glyphicon-certificate"></span>
+                    <h4>CERTIFIED</h4>
+                    <p>European standards in an european country</p>
+                </div>
+                <div class="col-sm-4">
+                    <span class="glyphicon glyphicon-wrench"></span>
+                    <h4>HARD WORK</h4>
+                    <p>Hard work so that you'll enjoy healthy food</p>
                 </div>
             </div>
+        </div>
+
+
+
+        <hr />
+
+
+
+        <div class="row">
+            <h2>We appreciate our producers</h2><br>
+            <h4>The best producers of the week:</h4>
+
+            <br />
+            <div class="col-sm-4">
+                <p><strong>Radu</strong></p><br>
+                <a href="#demo" data-toggle="collapse">
+                    <img src="@Url.Content("~/Content/Images/radu.png")" class="img-circle person" alt="Random Name" width="255" height="255">
+                </a>
+                <div id="demo" class="collapse">
+                    <p>Mare agricultor</p>
+                    <p>Cele mai bune leguminoase</p>
+                    <p>Deva, RO</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <p><strong>Radu din nou</strong></p><br>
+                <a href="#demo2" data-toggle="collapse">
+                    <img src="@Url.Content("~/Content/Images/radu.png")" class="img-circle person" alt="Random Name" width="255" height="255">
+                </a>
+                <div id="demo2" class="collapse">
+                    <p>Mare producator</p>
+                    <p>Capsunile lui sunt preferate de casa regala</p>
+                    <p>Cluj, RO</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <p><strong>Iar Radu</strong></p><br>
+                <a href="#demo3" data-toggle="collapse">
+                    <img src="@Url.Content("~/Content/Images/radu.png")" class="img-circle person" alt="Random Name" width="255" height="255">
+                </a>
+                <div id="demo3" class="collapse">
+                    <p>Locul 3 de data asta</p>
+                    <p>Cartofii sunt #power pentru el</p>
+                    <p>Turda, RO</p>
+                </div>
+            </div>
+        </div>
+        <!-- end of the second section-->
+        <!-- some space-->
+        <hr />
+        <br />
+        <br />
+        <br />
+        <!-- space-->
+        <!-- Third section: quotes -->
+        <h2>We value our clients:</h2>
+        <div id="myCarousel" class="carousel slide text-center bg-grey" data-ride="carousel">
+            <br /><br /><br />
+
+            <br /><br /><br />
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+
+            <hr />
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h4>"This company is the best. I am so happy with the result!"<br><span>Dioane Radu, Team Leader</span></h4>
+                </div>
+                <div class="item">
+                    <h4>"One word... WOW!(is this a `word`?)"<br><span>Dioane Radu, Team Leader</span></h4>
+                </div>
+                <div class="item">
+                    <h4>"Could I... BE any more happy with this team?"<br><span>Dioane Radu, Team Leader</span></h4>
+                </div><hr />
+            </div>
+            <!-- end of quotes-->
+
         </div>
     </div>
-</div>
-<!--  -->
-<!--
 
 
-<footer>
-    <hr />
-    <br /><br />
-    <form class="form-horizontal">
-        <h2>Newsletter</h2>
 
-        <h4>Be the first to see the last offers</h4>
-        <br />
-        <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <br />
-                <button type="button" class="btn btn-primary">Subscribe to offers</button>
-            </div>
-        </div>
-    </form>
-</footer>
-    -->

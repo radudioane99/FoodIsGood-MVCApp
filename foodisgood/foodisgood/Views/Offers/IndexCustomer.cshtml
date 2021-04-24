@@ -15,7 +15,7 @@
         <input type="submit" value="Search" />
     </p>
 }
-
+@*
 <table class="table">
 
     <tr>
@@ -42,34 +42,101 @@
         </th>
         <th></th>
     </tr>
-
-    @foreach (var item in Model)
-    {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PriceUnit)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Quantity)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CreateTime)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.EndTime)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.OfferType)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Description)
-    </td>
-    <td>
-        @Html.ActionLink("Details", "Details", new { id = item.ID })
-    </td>
-</tr>}
-
 </table>
+*@
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    .container {
+        position: relative;
+        font-family: Arial;
+    }
+
+    .text-block {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        background-color: black;
+        color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+
+    .container img {
+        vertical-align: middle;
+    }
+
+    .content {
+        position: absolute;
+        bottom: 0;
+        background: rgb(0, 0, 0); /* Fallback color */
+        background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+        color: #f1f1f1;
+        width: 97.4%;
+        padding: 20px;
+    }
+</style>
+
+
+<div class="container">
+    <img src="/content/images/cover4.png" style="width:100%">
+    <div class="content">
+        <h4>Healthy food</h4>
+        <p>Healthy life</p>
+    </div>
+</div>
+
+
+<h2>Last offers appeared on the website:</h2>
+<br />
+
+@foreach (var item in Model)
+{
+
+<div class="col-sm-3">
+    <div class="thumbnail">
+
+
+        <img src="/Content/Images/tomatoes.png" alt="Paris">
+        <p><strong> @Html.DisplayFor(modelItem => item.Name)</strong></p>
+        <p>Selling: @Html.DisplayFor(modelitem => item.Product.Name) </p>
+        <p>Quantity: @Html.DisplayFor(modelitem => item.Quantity) </p>
+        <p>Price: @Html.DisplayFor(modelItem => item.PriceUnit) RON/KG</p>
+        <p>Expiration date: @Html.DisplayFor(modelItem => item.EndTime) </p>
+
+        <button id="btn_buy" class="btn">
+            @Html.ActionLink("Buy Now", "PlaceOffer", "Orders", new { id = item.ID }, null)
+        </button>
+
+
+        <button type="button" class="btn" data-toggle="modal" data-target="#@Html.DisplayFor(modelItem => item.ID)">Description</button>
+
+
+
+
+        <div class="modal fade" id="@Html.DisplayFor(modelItem => item.ID)" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p> @Html.DisplayFor(modelItem => item.Name)</p>
+                        <p>Offer started on: @Html.DisplayFor(modelItem => item.CreateTime)</p>
+                        <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>}
