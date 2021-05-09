@@ -1,11 +1,11 @@
-﻿using System;
+﻿using foodisgood.Models;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using foodisgood.Models;
-using Microsoft.AspNet.Identity;
 
 namespace foodisgood.Controllers
 {
@@ -68,11 +68,11 @@ namespace foodisgood.Controllers
             if (User.IsInRole("AppAdmin"))
             {
                 return View("Index", offers.ToList());
-            } 
+            }
             else if (User.IsInRole("Customer"))
             {
                 return View("IndexCustomer", offers.ToList());
-            } 
+            }
             else if (User.Identity.IsAuthenticated == false)
             {
                 return View("IndexGuest", offers.ToList());
