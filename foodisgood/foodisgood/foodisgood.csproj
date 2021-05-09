@@ -244,6 +244,7 @@
     <Compile Include="Models\OrderOffer.cs" />
     <Compile Include="Models\OrdersViewModel.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ReviewModel.cs" />
     <Compile Include="Models\Rewiew.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -330,7 +331,6 @@
     <Content Include="Views\Orders\MyOrders.cshtml" />
     <Content Include="Views\Orders\CreateCustomer.cshtml" />
     <Content Include="Views\Rewiews\Rewiews.cshtml" />
-    <Content Include="Views\Rewiews\RewiewCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
