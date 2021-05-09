@@ -53,6 +53,13 @@ namespace foodisgood.Migrations
             products.ForEach(s => context.Products.Add(s));
             context.SaveChanges();
 
+            var Rewiews = new List<Rewiew>
+            {
+                new Rewiew{UserID="b187ddc7-13bd-4d54-8610-89d7a24160ca",Text="Positive opinion"},
+                new Rewiew{UserID="b187ddc7-13bd-4d54-8610-89d7a24160ca",Text="Negative opinion"}
+            };
+            Rewiews.ForEach(s => context.Rewiews.Add(s));
+
             var offers = new List<Offer>
             {
                 new Offer{Name="Petrica vinde", PriceUnit=2, Quantity=100, CreateTime=DateTime.Parse("2021-4-3"), EndTime=DateTime.Parse("2021-9-3"), OfferType=true, Description="Quality 1", ProductID=products[0].ID},
