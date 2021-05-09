@@ -13,13 +13,24 @@ namespace foodisgood.Controllers
         {
             Offer offer = db.Offers.Find(id);
             var seller = db.Users.Find(offer.UserID);
-            if (seller != null)
-            {
-                offer.User = seller;
-            }
-            var rewiews = db.Rewiews.Where(x => x.UserID == seller.Id).ToList();
+            var rewiews = db.Rewiews.ToList();
+            var userRewiews = rewiews.Select(x => x.UserID == offer.UserID);
+            return View("Rewiews", rewiews);
+        }
 
-            return HttpNotFound();
+        [HttpPost]
+        public ActionResult Index(FormCollection form)
+        {
+            string text = form["Text"];
+            string id = form["Id"];
+            Rewiew rewiew = new Rewiew();
+            rewiew.UserID = id;
+            rewiew.Text = text;
+            db.Rewiews.Add(rewiew);
+            db.SaveChanges();
+            var rewiews = db.Rewiews.ToList();
+            var userRewiews = rewiews.Select(x => x.UserID == id);
+            return View("Rewiews", rewiews);
         }
     }
 }

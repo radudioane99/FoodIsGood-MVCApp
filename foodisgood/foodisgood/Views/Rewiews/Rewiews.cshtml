@@ -1,0 +1,40 @@
+﻿@model IEnumerable<foodisgood.Models.Rewiew>
+@{
+    ViewBag.Title = "Rewiews";
+}
+
+<h2>Rewiews</h2>
+@foreach (var item in Model)
+{
+
+    <div class="row-sm-3">
+        <div class="thumbnail">
+            <div>
+                <p><strong> @Html.DisplayFor(modelItem => item.Text)</strong></p>
+            </div>
+
+        </div>
+    </div>
+}
+
+
+
+@using (Html.BeginForm("Index", "Rewiews", FormMethod.Post))
+{
+    
+   <p>Text:</p>
+   <input class="form-control" type="text" name="Text" />
+   <div class="hide">
+      <p>Id:<p>
+      <p><input type="text" name="Id" value=@Model.FirstOrDefault().UserID/></p>
+   </div>
+
+
+    <br />
+    <input type="submit" value="Submit" />
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

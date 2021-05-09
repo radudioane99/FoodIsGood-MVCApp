@@ -329,6 +329,8 @@
     <Content Include="Views\Offers\MyOffers.cshtml" />
     <Content Include="Views\Orders\MyOrders.cshtml" />
     <Content Include="Views\Orders\CreateCustomer.cshtml" />
+    <Content Include="Views\Rewiews\Rewiews.cshtml" />
+    <Content Include="Views\Rewiews\RewiewCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
