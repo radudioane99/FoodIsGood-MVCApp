@@ -9,13 +9,28 @@
     foreach (var item in Model.rewiews)
     {
 
-        <div class="row-sm-3">
-            <div class="thumbnail">
-                <div>
-                    <p><strong> @Html.DisplayFor(modelItem => item.Text)</strong></p>
-                </div>
+<div class="row-sm-3">
+    <div class="thumbnail">
+        <div class="thumbnail">
+            <div>
+                <p><strong> @Html.DisplayFor(modelItem => item.date)</strong></p>
             </div>
         </div>
+        <div class="thumbnail">
+            <div>
+                <p><strong> @Html.DisplayFor(modelItem => item.Text)</strong></p>
+            </div>
+        </div>
+        <div class="thumbnail">
+            <div>
+                @for (int i = 1; i <= item.note; i++)
+                    {
+                        <span>*</span>
+                    } 
+            </div>
+        </div>
+    </div>
+</div>
     }
 
 }

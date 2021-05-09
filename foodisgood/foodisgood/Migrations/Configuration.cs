@@ -55,8 +55,8 @@ namespace foodisgood.Migrations
 
             var Rewiews = new List<Rewiew>
             {
-                new Rewiew{UserID="b187ddc7-13bd-4d54-8610-89d7a24160ca",Text="Positive opinion"},
-                new Rewiew{UserID="b187ddc7-13bd-4d54-8610-89d7a24160ca",Text="Negative opinion"}
+                new Rewiew{UserID="b187ddc7-13bd-4d54-8610-89d7a24160ca",Text="Positive opinion",date=DateTime.Now, note=4 },
+                new Rewiew{UserID="b187ddc7-13bd-4d54-8610-89d7a24160ca",Text="Negative opinion",date=DateTime.Now, note=3 }
             };
             Rewiews.ForEach(s => context.Rewiews.Add(s));
 

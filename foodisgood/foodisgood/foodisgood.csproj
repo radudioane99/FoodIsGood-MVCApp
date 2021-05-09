@@ -234,6 +234,10 @@
     <Compile Include="Migrations\202105091246094_AddRewiews.designer.cs">
       <DependentUpon>202105091246094_AddRewiews.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105092113215_ReviewsImprovement.cs" />
+    <Compile Include="Migrations\202105092113215_ReviewsImprovement.designer.cs">
+      <DependentUpon>202105092113215_ReviewsImprovement.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DatabaseInitializer.cs" />
@@ -383,6 +387,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105091246094_AddRewiews.resx">
       <DependentUpon>202105091246094_AddRewiews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105092113215_ReviewsImprovement.resx">
+      <DependentUpon>202105092113215_ReviewsImprovement.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

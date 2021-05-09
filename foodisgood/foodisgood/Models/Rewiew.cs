@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace foodisgood.Models
 {
@@ -12,6 +13,10 @@ namespace foodisgood.Models
         [Required]
         [Display(Name = "Rewiew message")]
         public string Text { get; set; }
+
+        public DateTime date { get; set; }
+
+        public int note { get; set; }
 
     }
 }
