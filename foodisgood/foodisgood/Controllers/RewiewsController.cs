@@ -1,4 +1,5 @@
 ﻿using foodisgood.Models;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 namespace foodisgood.Controllers
@@ -34,9 +35,12 @@ namespace foodisgood.Controllers
             ReviewModel reviewModel = new ReviewModel();
             string text = form["Text"];
             string id = form["Id"];
+            string note = form["Note"];
             Rewiew rewiew = new Rewiew();
             rewiew.UserID = id;
             rewiew.Text = text;
+            rewiew.date = DateTime.Now;
+            rewiew.note = Convert.ToInt32(note);
             db.Rewiews.Add(rewiew);
             db.SaveChanges();
             var rewiews = db.Rewiews.ToList();

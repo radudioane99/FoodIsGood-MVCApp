@@ -9,42 +9,44 @@
     foreach (var item in Model.rewiews)
     {
 
-<div class="row-sm-3">
-    <div class="thumbnail">
-        <div class="thumbnail">
-            <div>
-                <p><strong> @Html.DisplayFor(modelItem => item.date)</strong></p>
+        <div class="row-sm-3">
+            <div class="thumbnail">
+                <div class="thumbnail">
+                    <div>
+                        <p><strong> @Html.DisplayFor(modelItem => item.date)</strong></p>
+                    </div>
+                </div>
+                <div class="thumbnail">
+                    <div>
+                        <p><strong> @Html.DisplayFor(modelItem => item.Text)</strong></p>
+                    </div>
+                </div>
+                <div class="thumbnail">
+                    <div>
+                        @for (int i = 1; i <= item.note; i++)
+                        {
+                            <span>*</span>
+                        }
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="thumbnail">
-            <div>
-                <p><strong> @Html.DisplayFor(modelItem => item.Text)</strong></p>
-            </div>
-        </div>
-        <div class="thumbnail">
-            <div>
-                @for (int i = 1; i <= item.note; i++)
-                    {
-                        <span>*</span>
-                    } 
-            </div>
-        </div>
-    </div>
-</div>
     }
 
 }
 else
 {
-      <span>There are no rewiews for this user yet.</span>
+    <span>There are no rewiews for this user yet.</span>
 }
- 
+
 <h5>Add your rewiew:</h5>
 @using (Html.BeginForm("Index", "Rewiews", FormMethod.Post))
 {
 
     <p>Text:</p>
     <input class="form-control" type="text" name="Text" />
+    <p>Note(1-5):</p>
+    <input class="form-control" type="text" name="Note" />
     <div class="hide">
         <p>Id:<p>
         <p><input type="text" name="Id" value=@Model.userId /></p>
