@@ -40,5 +40,8 @@ namespace foodisgood.Models
         public virtual ApplicationUser User { get; set; }
 
         public string UserID { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
+
     }
 }
