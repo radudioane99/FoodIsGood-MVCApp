@@ -1,10 +1,9 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using foodisgood.Models;
-using System.Collections.Generic;
 
 namespace foodisgood.Models
 {
@@ -44,6 +43,8 @@ namespace foodisgood.Models
         public DbSet<Product> Products { get; set; }
 
         public DbSet<Order> Orders { get; set; }
+
+        public DbSet<Rewiew> Rewiews { get; set; }
 
         //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }

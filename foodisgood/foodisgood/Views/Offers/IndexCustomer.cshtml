@@ -108,10 +108,13 @@
         <p>Quantity: @Html.DisplayFor(modelitem => item.Quantity) </p>
         <p>Price: @Html.DisplayFor(modelItem => item.PriceUnit) RON/KG</p>
         <p>Expiration date: @Html.DisplayFor(modelItem => item.EndTime) </p>
-        <p>User: @Html.DisplayFor(modelItem => item.User.FirstName) </p>
-
+        <p>Seller first name: @Html.DisplayFor(modelItem => item.User.FirstName)</p>
+        <p>Seller last name: @Html.DisplayFor(modelItem => item.User.LastName)</p>
         <button id="btn_buy" class="btn">
             @Html.ActionLink("Buy Now", "PlaceOffer", "Orders", new { id = item.ID }, null)
+        </button>
+        <button id="btn_buy" class="btn">
+            @Html.ActionLink("See Seller Rewiews", "GetSellerRewiews", "Rewiews", new { id = item.ID }, null)
         </button>
 
 
