@@ -80,7 +80,7 @@ namespace foodisgood.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,BuyerID,OfferID,DesiredQuantity")] Order order)
+        public ActionResult Create([Bind(Include = "ID,BuyerID,OfferID,DesiredQuantity,Accepted")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -114,7 +114,7 @@ namespace foodisgood.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,BuyerID,OfferID,DesiredQuantity")] Order order)
+        public ActionResult Edit([Bind(Include = "ID,BuyerID,OfferID,DesiredQuantity,Accepted")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -179,19 +179,19 @@ namespace foodisgood.Controllers
                 return View("CreateCustomer", model);
             }
         }
-
+        //--------------------------------------------------------------
         [HttpPost, ActionName("PostOrderToOffer")]
-        public ActionResult PostOrderToOffer([Bind(Include = "DesiredQuantity,OfferID,BuyerID")] Order order)
+        public ActionResult PostOrderToOffer([Bind(Include = "DesiredQuantity,OfferID,BuyerID,Accepted")] Order order)
         {
             if (order.BuyerID != null && order.OfferID != 0 && order.DesiredQuantity != 0)
             {
                 order.BuyerUser = db.Users.Find(order.BuyerID);
                 order.Offer = db.Offers.Find(order.OfferID);
-                order.Offer.Quantity = order.Offer.Quantity - order.DesiredQuantity;
+                order.Offer.Quantity = order.Offer.Quantity;
                 db.Entry(order.Offer).State = EntityState.Modified;
                 db.Orders.Add(order);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyOrders");
             }
             else
             {
@@ -199,6 +199,45 @@ namespace foodisgood.Controllers
             }
 
         }
+
+        public ActionResult AcceptOrder(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Order order = db.Orders.Find(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            return View(order);
+        }
+
+        [HttpPost, ActionName("AcceptOrder")]
+        public ActionResult AcceptOrderConfirm(int id)
+        {
+            Order order = db.Orders.Find(id);
+            if (order.Accepted != true)
+            {
+                order.Accepted = true;
+                order.Offer.Quantity = order.Offer.Quantity - order.DesiredQuantity;
+                db.Entry(order.Offer).State = EntityState.Modified;
+                db.SaveChanges();
+
+                var offerId = order.OfferID;
+                var offerOrders = db.Orders.Where(o => o.OfferID == offerId);
+                return View("OrdersOfMyOffer", offerOrders.ToList());
+            }
+            else
+            {
+                var offerId = order.OfferID;
+                var offerOrders = db.Orders.Where(o => o.OfferID == offerId);
+                return View("OrdersOfMyOffer", offerOrders.ToList());
+            }
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
