@@ -229,6 +229,14 @@
     <Compile Include="Migrations\202104190716319_NewPopulation2.designer.cs">
       <DependentUpon>202104190716319_NewPopulation2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105091511215_OrderAccepted.cs" />
+    <Compile Include="Migrations\202105091511215_OrderAccepted.designer.cs">
+      <DependentUpon>202105091511215_OrderAccepted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105091606149_OffersWithOrders.cs" />
+    <Compile Include="Migrations\202105091606149_OffersWithOrders.designer.cs">
+      <DependentUpon>202105091606149_OffersWithOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DatabaseInitializer.cs" />
@@ -323,6 +331,8 @@
     <Content Include="Views\Offers\MyOffers.cshtml" />
     <Content Include="Views\Orders\MyOrders.cshtml" />
     <Content Include="Views\Orders\CreateCustomer.cshtml" />
+    <Content Include="Views\Orders\OrdersOfMyOffer.cshtml" />
+    <Content Include="Views\Orders\AcceptOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -372,6 +382,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104190716319_NewPopulation2.resx">
       <DependentUpon>202104190716319_NewPopulation2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105091511215_OrderAccepted.resx">
+      <DependentUpon>202105091511215_OrderAccepted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105091606149_OffersWithOrders.resx">
+      <DependentUpon>202105091606149_OffersWithOrders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
