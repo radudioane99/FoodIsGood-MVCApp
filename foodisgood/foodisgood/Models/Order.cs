@@ -26,5 +26,7 @@ namespace foodisgood.Models
         [Required]
         [Display(Name = "Desired Quantity")]
         public float DesiredQuantity { get; set; }
+
+        public bool Accepted { get; set; }
     }
 }

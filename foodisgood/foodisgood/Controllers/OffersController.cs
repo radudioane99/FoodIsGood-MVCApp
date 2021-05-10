@@ -230,5 +230,20 @@ namespace foodisgood.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult SeeOffers(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Offer offer = db.Offers.Find(id);
+            if (offer == null)
+            {
+                return HttpNotFound();
+            }
+            var offerOrders = db.Orders.Where(o => o.OfferID == id);
+            return View("~/Views/Orders/OrdersOfMyOffer.cshtml",offerOrders.ToList());
+        }
     }
 }
