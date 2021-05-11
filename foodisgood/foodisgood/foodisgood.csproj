@@ -350,6 +350,8 @@
     <Content Include="Views\Orders\OrdersOfMyOffer.cshtml" />
     <Content Include="Views\Orders\AcceptOrder.cshtml" />
     <Content Include="Views\Rewiews\Rewiews.cshtml" />
+    <Content Include="Views\Offers\EditCustomer.cshtml" />
+    <Content Include="Views\Orders\EditCustomer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

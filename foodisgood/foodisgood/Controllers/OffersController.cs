@@ -127,15 +127,16 @@ namespace foodisgood.Controllers
         // GET: Offers/Create
         public ActionResult Create()
         {
-            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
+            //ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
             if (User.IsInRole("AppAdmin"))
             {
-                return View("Create");
+                ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
+                return View();
             }
             else
             {
                 ViewBag.ProductID = new SelectList(db.Products.OrderBy(p => p.Name), "ID", "Name");
-                return View("CreateCustomer");
+                return View();
             }
         }
 
@@ -149,7 +150,7 @@ namespace foodisgood.Controllers
         {
             if (User.IsInRole("Customer"))
             {
-                ViewBag.ProductID = new SelectList(db.Products.Where(p => p.Name == "Tomatoes"), "ID", "Name");
+                // ViewBag.ProductID = new SelectList(db.Products.Where(p => p.Name == "Tomatoes"), "ID", "Name");
                 offer.UserID = User.Identity.GetUserId();
                 offer.CreateTime = DateTime.Now;
             }
@@ -195,6 +196,37 @@ namespace foodisgood.Controllers
             ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", offer.ProductID);
             return View(offer);
         }
+
+        public ActionResult EditCustomer(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Offer offer = db.Offers.Find(id);
+            if (offer == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", offer.ProductID);
+            return View(offer);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditCustomer([Bind(Include = "ID,PriceUnit,Quantity,CreateTime,EndTime,OfferType,Description,ProductID, UserID, Name")] Offer offer)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(offer).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", offer.ProductID);
+            return View(offer);
+        }
+
+
 
         // GET: Offers/Delete/5
         public ActionResult Delete(int? id)
