@@ -292,7 +292,7 @@ namespace foodisgood.Controllers
                 db.Orders.Remove(order);
                 db.SaveChanges();
                 // TO DO: add pop-up notification
-                return View("Index", id);
+                return View("MyOrders");
             }
             else if (order.Accepted == false) // if the order is not accepted return the same page and show notification
             {
