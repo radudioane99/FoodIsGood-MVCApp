@@ -193,7 +193,7 @@ namespace foodisgood.Controllers
                 db.SaveChanges();
                 return RedirectToAction("MyOrders");
             }
-            else if (order.DesiredQuantity > order.Offer.Quantity)
+            else if (order.DesiredQuantity > order.Offer.Quantity) // Domsa
             {
                 OrderOffer model = new OrderOffer();
                 model.Order = order;
@@ -206,17 +206,6 @@ namespace foodisgood.Controllers
                 return HttpNotFound();
             }
 
-        }
-
-        public string OpenModelPopup()
-        {
-            //can send some data also.  
-            return "<h1>This is Modal Popup Window</h1>";
-        }
-        public ActionResult QuantityError()
-        {
-            TempData["alertMessage"] = "Desired quantity is too large!";
-            return View();
         }
 
         public ActionResult AcceptOrder(int? id)
