@@ -44,7 +44,8 @@
         </td>
         <td>
             @Html.ActionLink("Delete", "DeleteOrder", "Orders", new { id = item.ID }, null) |
-            @Html.ActionLink("Complete Order", "AcceptOrder", "Orders", new { id = item.ID }, null) 
+            @Html.ActionLink("Accept Order", "AcceptOrder", "Orders", new { id = item.ID }, null) |
+            @Html.ActionLink("Complete Order", "CompleteOrder", "Orders", new { id = item.ID }, null)
         </td>
     </tr>
     }

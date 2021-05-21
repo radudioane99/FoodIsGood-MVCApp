@@ -246,23 +246,60 @@ namespace foodisgood.Controllers
                 order.Accepted = true;
                 // order.Offer.Quantity = order.Offer.Quantity - order.DesiredQuantity;
                 db.Entry(order.Offer).State = EntityState.Modified;
-
-                var offerId = order.OfferID;
-                var offerOrders = db.Orders.Where(o => o.OfferID == offerId);
-
-                db.Orders.Remove(order);
                 db.SaveChanges();
-               
+                var offerId = order.OfferID;
+                var offerOrders = db.Orders.Where(o => o.OfferID == offerId);              
                 return View("OrdersOfMyOffer", offerOrders.ToList());
             }
             else
             {
                 var offerId = order.OfferID;
                 var offerOrders = db.Orders.Where(o => o.OfferID == offerId);
-                db.Orders.Remove(order);
-                db.SaveChanges();
                 return View("OrdersOfMyOffer", offerOrders.ToList());
             }
+        }
+
+        public ActionResult CompleteOrder(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Order order = db.Orders.Find(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            return View(order);
+        }
+
+        [HttpPost, ActionName("CompleteOrder")]
+        public ActionResult CompleteOrderConfirm(int id)
+        {
+            Order order = db.Orders.Find(id);
+            var offerId = order.OfferID;
+            var offerOrders = db.Orders.Where(o => o.OfferID == offerId);
+            if (order.Accepted == true && offerOrders.Count() > 1) // if the offer has other orders we delete the current one and return the View to the others
+            {
+                db.Orders.Remove(order);
+                db.SaveChanges();
+                offerOrders = db.Orders.Where(o => o.OfferID == offerId);
+                return View("OrdersOfMyOffer", offerOrders.ToList());
+            }
+            else if (order.Accepted == true && offerOrders.Count() == 1) // if there are no other orders we delete the current order AND offer and return to Index + POPUP
+            {
+                db.Offers.Remove(order.Offer);
+                db.Orders.Remove(order);
+                db.SaveChanges();
+                // TO DO: add pop-up notification
+                return View("Index", id);
+            }
+            else if (order.Accepted == false) // if the order is not accepted return the same page and show notification
+            {
+                // TO DO: add pop-up notification
+                return View(order);
+            }
+            return HttpNotFound();
         }
 
         public ActionResult DeleteOrder(int? id)

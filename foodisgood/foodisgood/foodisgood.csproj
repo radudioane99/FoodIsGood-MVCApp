@@ -352,6 +352,8 @@
     <Content Include="Views\Rewiews\Rewiews.cshtml" />
     <Content Include="Views\Offers\EditCustomer.cshtml" />
     <Content Include="Views\Orders\EditCustomer.cshtml" />
+    <Content Include="Views\Orders\DeleteOrder.cshtml" />
+    <Content Include="Views\Orders\CompleteOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
