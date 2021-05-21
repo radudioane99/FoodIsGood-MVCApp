@@ -17,13 +17,26 @@ namespace foodisgood.Controllers
         // GET: Offers
         public ActionResult Index(string sortOrder, string searchString)
         {
+            // Show expired offers!
+            var expiredOffers = db.Offers.Where(o => DateTime.Now > o.EndTime && o.OfferType == false).ToList();
+            if (expiredOffers.Any())
+            {
+                foreach (Offer offer in expiredOffers)
+                {
+                    offer.OfferType = true;
+                    db.Entry(offer).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            // Done deleting.
+
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
             ViewBag.QuantitySortParm = sortOrder == "Quantity" ? "quantity_desc" : "Quantity";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.EndDateSortParm = sortOrder == "EndDate" ? "endDate_desc" : "EndDate";
 
-            var offers = from s in db.Offers select s;
+            var offers = from s in db.Offers where s.OfferType == false select s;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -81,7 +94,7 @@ namespace foodisgood.Controllers
             }
             else
             {
-                return View();
+                return View(offers.ToList());
             }
         }
 
