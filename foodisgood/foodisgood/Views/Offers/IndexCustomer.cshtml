@@ -16,33 +16,33 @@
     </p>
 }
 @*
-<table class="table">
+    <table class="table">
 
-    <tr>
-        <th>
-            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.PriceSortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Quantity", "Index", new { sortOrder = ViewBag.QuantitySortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Creation Date", "Index", new { sortOrder = ViewBag.DateSortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Expiration Date", "Index", new { sortOrder = ViewBag.EndDateSortParm })
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OfferType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
-</table>
+        <tr>
+            <th>
+                @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.PriceSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Quantity", "Index", new { sortOrder = ViewBag.QuantitySortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Creation Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Expiration Date", "Index", new { sortOrder = ViewBag.EndDateSortParm })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfferType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </table>
 *@
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -95,52 +95,52 @@
 <h2>Last offers appeared on the website:</h2>
 <br />
 
+
 @foreach (var item in Model)
 {
 
-<div class="col-sm-3">
-    <div class="thumbnail">
+    <div class="col-sm-3">
+        <div class="thumbnail">
+
+            <img src="/Content/Images/tomatoes.png" alt="Paris">
+            <p><strong> @Html.DisplayFor(modelItem => item.Name)</strong></p>
+            <p>Selling: @Html.DisplayFor(modelitem => item.Product.Name) </p>
+            <p>Quantity: @Html.DisplayFor(modelitem => item.Quantity) </p>
+            <p>Price: @Html.DisplayFor(modelItem => item.PriceUnit) RON/KG</p>
+            <p>Expiration date: @Html.DisplayFor(modelItem => item.EndTime) </p>
+            <p>Seller first name: @Html.DisplayFor(modelItem => item.User.FirstName)</p>
+            <p>Seller last name: @Html.DisplayFor(modelItem => item.User.LastName)</p>
+            <button id="btn_buy" class="btn">
+                @Html.ActionLink("Buy Now", "PlaceOffer", "Orders", new { id = item.ID }, null)
+            </button>
+            <button id="btn_buy" class="btn">
+                @Html.ActionLink("See Seller Rewiews", "GetSellerRewiews", "Rewiews", new { id = item.ID }, null)
+            </button>
 
 
-        <img src="/Content/Images/tomatoes.png" alt="Paris">
-        <p><strong> @Html.DisplayFor(modelItem => item.Name)</strong></p>
-        <p>Selling: @Html.DisplayFor(modelitem => item.Product.Name) </p>
-        <p>Quantity: @Html.DisplayFor(modelitem => item.Quantity) </p>
-        <p>Price: @Html.DisplayFor(modelItem => item.PriceUnit) RON/KG</p>
-        <p>Expiration date: @Html.DisplayFor(modelItem => item.EndTime) </p>
-        <p>Seller first name: @Html.DisplayFor(modelItem => item.User.FirstName)</p>
-        <p>Seller last name: @Html.DisplayFor(modelItem => item.User.LastName)</p>
-        <button id="btn_buy" class="btn">
-            @Html.ActionLink("Buy Now", "PlaceOffer", "Orders", new { id = item.ID }, null)
-        </button>
-        <button id="btn_buy" class="btn">
-            @Html.ActionLink("See Seller Rewiews", "GetSellerRewiews", "Rewiews", new { id = item.ID }, null)
-        </button>
-
-
-        <button type="button" class="btn" data-toggle="modal" data-target="#@Html.DisplayFor(modelItem => item.ID)">Description</button>
+            <button type="button" class="btn" data-toggle="modal" data-target="#@Html.DisplayFor(modelItem => item.ID)">Description</button>
 
 
 
 
-        <div class="modal fade" id="@Html.DisplayFor(modelItem => item.ID)" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal fade" id="@Html.DisplayFor(modelItem => item.ID)" role="dialog">
+                <div class="modal-dialog">
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <p> @Html.DisplayFor(modelItem => item.Name)</p>
-                        <p>Offer started on: @Html.DisplayFor(modelItem => item.CreateTime)</p>
-                        <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p> @Html.DisplayFor(modelItem => item.Name)</p>
+                            <p>Offer started on: @Html.DisplayFor(modelItem => item.CreateTime)</p>
+                            <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+
                 </div>
-
             </div>
+
         </div>
 
-    </div>
-
-</div>}
+    </div>}

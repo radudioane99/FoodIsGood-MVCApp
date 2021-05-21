@@ -152,7 +152,7 @@ namespace foodisgood.Controllers
             return RedirectToAction("Index");
         }
 
-
+        // Dioane kill yourself pls!
         [HttpGet, ActionName("PlaceOffer")]
         public ActionResult PlaceOffer(int? id)
         {
@@ -164,7 +164,7 @@ namespace foodisgood.Controllers
             }
             else
             {
-                //Get data we need
+                //Get *the* data we need // Dioane burn that Cambridge Certificate pls!
                 var seller = db.Users.Find(offer.UserID);
                 if (seller != null)
                 {
@@ -179,25 +179,44 @@ namespace foodisgood.Controllers
                 return View("CreateCustomer", model);
             }
         }
+
         //--------------------------------------------------------------
         [HttpPost, ActionName("PostOrderToOffer")]
         public ActionResult PostOrderToOffer([Bind(Include = "DesiredQuantity,OfferID,BuyerID,Accepted")] Order order)
         {
-            if (order.BuyerID != null && order.OfferID != 0 && order.DesiredQuantity != 0)
+            order.Offer = db.Offers.Find(order.OfferID);
+            if (order.BuyerID != null && order.OfferID != 0 && order.DesiredQuantity != 0 && order.DesiredQuantity < order.Offer.Quantity)
             {
                 order.BuyerUser = db.Users.Find(order.BuyerID);
-                order.Offer = db.Offers.Find(order.OfferID);
-                order.Offer.Quantity = order.Offer.Quantity;
                 db.Entry(order.Offer).State = EntityState.Modified;
                 db.Orders.Add(order);
                 db.SaveChanges();
                 return RedirectToAction("MyOrders");
+            }
+            else if (order.DesiredQuantity > order.Offer.Quantity)
+            {
+                OrderOffer model = new OrderOffer();
+                model.Order = order;
+                model.Offer = order.Offer;
+                ViewBag.MyErrorMessage = "Quantity is too big!";
+                return View("CreateCustomer", model);
             }
             else
             {
                 return HttpNotFound();
             }
 
+        }
+
+        public string OpenModelPopup()
+        {
+            //can send some data also.  
+            return "<h1>This is Modal Popup Window</h1>";
+        }
+        public ActionResult QuantityError()
+        {
+            TempData["alertMessage"] = "Desired quantity is too large!";
+            return View();
         }
 
         public ActionResult AcceptOrder(int? id)

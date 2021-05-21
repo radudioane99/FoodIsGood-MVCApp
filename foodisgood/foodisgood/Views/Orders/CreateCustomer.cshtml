@@ -4,7 +4,13 @@
     ViewBag.Title = "CreateCustomer";
 }
 
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+</head>
+
 <h2>Create</h2>
+
+
 
 <body>
     <div>
@@ -180,8 +186,20 @@
             </div>
         }
     </div>
-</body>
 
+    <script>
+        $(document).ready(function () {
+    </script>
+    @if (null != ViewBag.MyErrorMessage)
+    {
+        <script>
+            alert("@ViewBag.MyErrorMessage");
+        </script>
+    }
+    <script>
+    });
+    </script>
+</body>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
