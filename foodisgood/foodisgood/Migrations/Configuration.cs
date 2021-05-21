@@ -8,13 +8,16 @@ namespace foodisgood.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
+
     internal sealed class Configuration : DbMigrationsConfiguration<foodisgood.Models.ApplicationDbContext>
     {
         public Configuration()
         {
+
             AutomaticMigrationsEnabled = false;
             ContextKey = "foodisgood.Models.ApplicationDbContext";
         }
+
 
         protected override void Seed(ApplicationDbContext context)
         {
@@ -40,45 +43,67 @@ namespace foodisgood.Migrations
                 manager.Create(role);
             }
 
-            var products = new List<Product>
+            if (!context.Products.Any())
             {
-                new Product{Name="Tomatoes",Type="Spanish",Quality=1,ExpirationDate=DateTime.Parse("2021-4-6")},
-                new Product{Name="Carrots",Type="French",Quality=1,ExpirationDate=DateTime.Parse("2021-4-3")},
-                new Product{Name="Oranges",Type="Portugese",Quality=1,ExpirationDate=DateTime.Parse("2021-5-6")},
-                new Product{Name="Banana",Type="American",Quality=1,ExpirationDate=DateTime.Parse("2021-5-6")},
-                new Product{Name="Pineapple",Type="Taiwanese",Quality=1,ExpirationDate=DateTime.Parse("2021-5-6")},
-                new Product{Name="Apples",Type="French",Quality=1,ExpirationDate=DateTime.Parse("2021-5-6")},
-                new Product{Name="Cucumber",Type="French",Quality=1,ExpirationDate=DateTime.Parse("2021-5-6")}
-            };
-            products.ForEach(s => context.Products.Add(s));
-            context.SaveChanges();
+                var products = new List<Product>
+                {
+                    new Product{Name="Tomatoes",Type="Spanish",Quality=1,ExpirationDate=DateTime.Parse("2021-4-6")},
+                    new Product{Name="Carrots",Type="French",Quality=1,ExpirationDate=DateTime.Parse("2021-4-3")},
+                    new Product{Name="Oranges",Type="Portugese",Quality=1,ExpirationDate=DateTime.Parse("2021-5-6")},
+                    new Product{Name="Banana",Type="American",Quality=1,ExpirationDate=DateTime.Parse("2021-5-6")},
+                    new Product{Name="Pineapple",Type="Taiwanese",Quality=1,ExpirationDate=DateTime.Parse("2021-5-6")},
+                    new Product{Name="Apples",Type="French",Quality=1,ExpirationDate=DateTime.Parse("2021-5-6")},
+                    new Product{Name="Cucumber",Type="French",Quality=1,ExpirationDate=DateTime.Parse("2021-5-6")}
+                };
+                products.ForEach(s => context.Products.Add(s));
+                context.SaveChanges();
+            }
 
-            var Rewiews = new List<Rewiew>
+            if (!context.Rewiews.Any())
+            {
+                var Rewiews = new List<Rewiew>
             {
                 new Rewiew{UserID="b187ddc7-13bd-4d54-8610-89d7a24160ca",Text="Positive opinion",date=DateTime.Now, note=4 },
                 new Rewiew{UserID="b187ddc7-13bd-4d54-8610-89d7a24160ca",Text="Negative opinion",date=DateTime.Now, note=3 }
             };
-            Rewiews.ForEach(s => context.Rewiews.Add(s));
+                Rewiews.ForEach(s => context.Rewiews.Add(s));
+            }
 
-            var offers = new List<Offer>
+            if (!context.Users.Any())
             {
-                new Offer{Name="Petrica vinde", PriceUnit=2, Quantity=100, CreateTime=DateTime.Parse("2021-4-3"), EndTime=DateTime.Parse("2021-9-3"), OfferType=true, Description="Quality 1", ProductID=products[0].ID},
-                new Offer{Name="Mihaita vinde", PriceUnit=4, Quantity=179, CreateTime=DateTime.Parse("2021-4-6"), EndTime=DateTime.Parse("2023-9-3"), OfferType=true, Description="", ProductID=products[0].ID},
-                new Offer{Name="Eu vand", PriceUnit=7, Quantity=163, CreateTime=DateTime.Parse("2021-4-18"), EndTime=DateTime.Parse("2022-9-3"), OfferType=true, Description="", ProductID=products[0].ID},
-                new Offer{Name="Ceva de Mihaita", PriceUnit=9, Quantity=24, CreateTime=DateTime.Parse("2021-4-4"), EndTime=DateTime.Parse("2025-9-3"), OfferType=true, Description="Quality 2", ProductID=products[0].ID},
-                new Offer{Name="Oferta lui Petrisor", PriceUnit=4, Quantity=35, CreateTime=DateTime.Parse("2021-4-2"), EndTime=DateTime.Parse("2021-8-3"), OfferType=true, Description="Genius delivery.", ProductID=products[0].ID},
-            };
-            offers.ForEach(s => context.Offers.Add(s));
-            context.SaveChanges();
-            /*
-            var orders = new List<Order>
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user1 = new ApplicationUser { UserName = "customerOne@Test.com", Email = "customerOne@Test.com", FirstName = "Adrian_1", LastName = "Petrica_1", Location = "Cluj" };
+                var user2 = new ApplicationUser { UserName = "customerTwo@Test.com", Email = "customerTwo@Test.com", FirstName = "Adrian_2", LastName = "Petrica_2", Location = "Cluj" };
+                var user3 = new ApplicationUser { UserName = "customerThree@Test.com", Email = "customerThree@Test.com", FirstName = "Adrian_3", LastName = "Petrica_3", Location = "Cluj" };
+                var admin = new ApplicationUser { UserName = "admin@Test.com", Email = "admin@Test.com", FirstName = "Admin", LastName = "Admin", Location = "Constanta" };
+
+                manager.Create(user1, "123456");
+                manager.Create(user2, "123456");
+                manager.Create(user3, "123456");
+                manager.Create(admin, "123456");
+                manager.AddToRole(user1.Id, "Customer");
+                manager.AddToRole(user2.Id, "Customer");
+                manager.AddToRole(user3.Id, "Customer");
+                manager.AddToRole(admin.Id, "AppAdmin");
+            }
+
+            if (!context.Offers.Any())
             {
-                new Order{BuyerID=1, OfferID = 1, DesiredQuantity = 500},
-                new Order{BuyerID=1, OfferID = 2, DesiredQuantity=300},
-            };
-            orders.ForEach(s => context.Orders.Add(s));
-            context.SaveChanges();
-            */
+                var product = context.Products.Where(p => p.Name.Equals("Banana")).ToList();
+                var user = context.Users.Where(u => u.UserName.Equals("customerOne@Test.com")).ToList();
+
+                var offers = new List<Offer>
+                {
+                    new Offer{UserID = user[0].Id, Name="Offer one", PriceUnit=2, Quantity=100, CreateTime=DateTime.Parse("2021-4-3"), EndTime=DateTime.Parse("2021-9-3"), OfferType=true, Description="Quality 1", ProductID=product[0].ID},
+                    new Offer{UserID = user[0].Id, Name="I sell more stuff!", PriceUnit=4, Quantity=179, CreateTime=DateTime.Parse("2021-4-6"), EndTime=DateTime.Parse("2023-9-3"), OfferType=true, Description="", ProductID=product[0].ID},
+                    new Offer{UserID = user[0].Id, Name="Fantastic products!", PriceUnit=7, Quantity=163, CreateTime=DateTime.Parse("2021-4-18"), EndTime=DateTime.Parse("2022-9-3"), OfferType=true, Description="", ProductID=product[0].ID},
+                    new Offer{UserID = user[0].Id, Name="Great quality vegetables!", PriceUnit=9, Quantity=24, CreateTime=DateTime.Parse("2021-4-4"), EndTime=DateTime.Parse("2025-9-3"), OfferType=true, Description="Quality 2", ProductID=product[0].ID},
+                    new Offer{UserID = user[0].Id, Name="Lovely vegetables!", PriceUnit=4, Quantity=35, CreateTime=DateTime.Parse("2021-4-2"), EndTime=DateTime.Parse("2021-8-3"), OfferType=true, Description="Genius delivery.", ProductID=product[0].ID},
+                };
+                offers.ForEach(s => context.Offers.Add(s));
+                context.SaveChanges();
+            }
         }
     }
 }
