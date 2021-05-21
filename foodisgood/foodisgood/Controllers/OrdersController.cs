@@ -195,10 +195,13 @@ namespace foodisgood.Controllers
             }
             else if (order.DesiredQuantity > order.Offer.Quantity) // Domsa
             {
+                // Recreating the model such that we can "refresh" the page
                 OrderOffer model = new OrderOffer();
                 model.Order = order;
                 model.Offer = order.Offer;
+                // Adds the error message to the ViewBag -- Checked in View
                 ViewBag.MyErrorMessage = "Quantity is too big!";
+                // "Refresh" the page (calls the page with the same model as parameter)
                 return View("CreateCustomer", model);
             }
             else
