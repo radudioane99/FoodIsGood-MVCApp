@@ -1,7 +1,14 @@
-﻿@model foodisgood.Models.Order
+﻿
+@{
+    ViewBag.Title = "CompleteOrder";
+}
+
+<h2>CompleteOrder</h2>
+
+@model foodisgood.Models.Order
 
 @{
-    ViewBag.Title = "DetailsAccept";
+    ViewBag.Title = "DetailsComplete";
 }
 
 <h2>Details</h2>
@@ -31,7 +38,7 @@
 <p>
     @using (Html.BeginForm())
     {
-        <input type="submit" name="response" value="Accept Order" formaction=@Url.Action("AcceptOrder", "Orders") formmethod="post" class="btn btn-primary" />
+        <input type="submit" name="response" value="Complete Order" formaction=@Url.Action("CompleteOrder", "Orders") formmethod="post" class="btn btn-primary" />
         @*<input type="submit" name="response" value="Refuse" formaction=@Url.Action("DeleteOrder","Orders") formmethod="post" class="btn btn-primary" />*@
     }
 </p>
