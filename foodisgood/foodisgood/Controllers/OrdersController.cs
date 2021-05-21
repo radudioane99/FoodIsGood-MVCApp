@@ -13,6 +13,7 @@ namespace foodisgood.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Orders
+        [Authorize(Roles = "AppAdmin")]
         public ActionResult Index()
         {
             var orders = db.Orders.Include(o => o.Offer);
@@ -185,11 +186,22 @@ namespace foodisgood.Controllers
         public ActionResult PostOrderToOffer([Bind(Include = "DesiredQuantity,OfferID,BuyerID,Accepted")] Order order)
         {
             order.Offer = db.Offers.Find(order.OfferID);
-            if (order.BuyerID != null && order.OfferID != 0 && order.DesiredQuantity != 0 && order.DesiredQuantity < order.Offer.Quantity)
+            if (order.BuyerID != null && order.OfferID != 0 && order.DesiredQuantity != 0 && order.DesiredQuantity <= order.Offer.Quantity)
             {
                 order.BuyerUser = db.Users.Find(order.BuyerID);
                 db.Entry(order.Offer).State = EntityState.Modified;
                 db.Orders.Add(order);
+
+                // Domsa -- the desired quantity is substracted when placing an order
+                order.Offer.Quantity = order.Offer.Quantity - order.DesiredQuantity;
+
+                /*
+                if (order.Offer.Quantity == 0)
+                {
+                    db.Offers.Remove(order.Offer);
+                }
+                */
+
                 db.SaveChanges();
                 return RedirectToAction("MyOrders");
             }
@@ -232,21 +244,51 @@ namespace foodisgood.Controllers
             if (order.Accepted != true)
             {
                 order.Accepted = true;
-                order.Offer.Quantity = order.Offer.Quantity - order.DesiredQuantity;
+                // order.Offer.Quantity = order.Offer.Quantity - order.DesiredQuantity;
                 db.Entry(order.Offer).State = EntityState.Modified;
-                db.SaveChanges();
 
                 var offerId = order.OfferID;
                 var offerOrders = db.Orders.Where(o => o.OfferID == offerId);
+
+                db.Orders.Remove(order);
+                db.SaveChanges();
+               
                 return View("OrdersOfMyOffer", offerOrders.ToList());
             }
             else
             {
                 var offerId = order.OfferID;
                 var offerOrders = db.Orders.Where(o => o.OfferID == offerId);
+                db.Orders.Remove(order);
+                db.SaveChanges();
                 return View("OrdersOfMyOffer", offerOrders.ToList());
             }
         }
+
+        public ActionResult DeleteOrder(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Order order = db.Orders.Find(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            return View(order);
+        }
+
+        [HttpPost, ActionName("DeleteOrder")]
+        public ActionResult DeleteOrderConfirmed(int id)
+        {
+            Order order = db.Orders.Find(id);
+            order.Offer.Quantity += order.DesiredQuantity;
+            db.Orders.Remove(order);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 
 
         protected override void Dispose(bool disposing)

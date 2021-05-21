@@ -30,6 +30,8 @@ namespace foodisgood.Controllers
                 offers = offers.Where(s => s.Name.Contains(searchString));
             }
 
+            offers = offers.Where(s => s.Quantity > 0);
+
             switch (sortOrder)
             {
                 case "price_desc":
