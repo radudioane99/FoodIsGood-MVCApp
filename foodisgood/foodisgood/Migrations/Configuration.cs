@@ -116,11 +116,11 @@ namespace foodisgood.Migrations
 
                 var orders = new List<Order>
                 {
-                    new Order{BuyerID = user[0].Id, OfferID=offer[0].ID, DesiredQuantity=10, Accepted=false},
-                    new Order{BuyerID = user[0].Id, OfferID=offer[0].ID, DesiredQuantity=4, Accepted=false},
-                    new Order{BuyerID = user[0].Id, OfferID=offer[0].ID, DesiredQuantity=7, Accepted=false},
-                    new Order{BuyerID = user[0].Id, OfferID=offer[0].ID, DesiredQuantity=9, Accepted=false},
-                    new Order{BuyerID = user[0].Id, OfferID=offer[0].ID, DesiredQuantity=4, Accepted=false},
+                    new Order{BuyerUserID = user[0].Id, OfferID=offer[0].ID, DesiredQuantity=10, Accepted=false},
+                    new Order{BuyerUserID = user[0].Id, OfferID=offer[0].ID, DesiredQuantity=4, Accepted=false},
+                    new Order{BuyerUserID = user[0].Id, OfferID=offer[0].ID, DesiredQuantity=7, Accepted=false},
+                    new Order{BuyerUserID = user[0].Id, OfferID=offer[0].ID, DesiredQuantity=9, Accepted=false},
+                    new Order{BuyerUserID = user[0].Id, OfferID=offer[0].ID, DesiredQuantity=4, Accepted=false},
                 };
                 orders.ForEach(s => context.Orders.Add(s));
                 context.SaveChanges();

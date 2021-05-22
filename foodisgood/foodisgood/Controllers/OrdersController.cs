@@ -39,7 +39,7 @@ namespace foodisgood.Controllers
         {
             var id = User.Identity.GetUserId();
             id = id.ToString();
-            var myOffers = db.Orders.Where(o => o.BuyerID.Equals(id));
+            var myOffers = db.Orders.Where(o => o.BuyerUserID.Equals(id));
             return View("MyOrders", myOffers.ToList());
         }
 
@@ -81,7 +81,7 @@ namespace foodisgood.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,BuyerID,OfferID,DesiredQuantity,Accepted")] Order order)
+        public ActionResult Create([Bind(Include = "ID,BuyerUserID,OfferID,DesiredQuantity,Accepted")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -115,8 +115,11 @@ namespace foodisgood.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,BuyerID,OfferID,DesiredQuantity,Accepted")] Order order)
+        public ActionResult Edit([Bind(Include = "ID,DesiredQuantity,Accepted")] Order order)
         {
+            Order initialOrder = db.Orders.AsNoTracking().Single(o => o.ID.Equals(order.ID));
+            order.BuyerUserID = initialOrder.BuyerUserID;
+            order.OfferID = initialOrder.OfferID;
             if (ModelState.IsValid)
             {
                 db.Entry(order).State = EntityState.Modified;
@@ -173,8 +176,8 @@ namespace foodisgood.Controllers
                 }
                 Order order = new Order();
                 order.OfferID = offer.ID;
-                order.BuyerID = User.Identity.GetUserId();
-                order.BuyerUser = db.Users.FirstOrDefault(x => x.Id == order.BuyerID);
+                order.BuyerUserID = User.Identity.GetUserId();
+                order.BuyerUser = db.Users.FirstOrDefault(x => x.Id == order.BuyerUserID);
                 model.Order = order;
                 model.Offer = offer;
                 return View("CreateCustomer", model);
@@ -183,12 +186,12 @@ namespace foodisgood.Controllers
 
         //--------------------------------------------------------------
         [HttpPost, ActionName("PostOrderToOffer")]
-        public ActionResult PostOrderToOffer([Bind(Include = "DesiredQuantity,OfferID,BuyerID,Accepted")] Order order)
+        public ActionResult PostOrderToOffer([Bind(Include = "DesiredQuantity,OfferID,BuyerUserID,Accepted")] Order order)
         {
             order.Offer = db.Offers.Find(order.OfferID);
-            if (order.BuyerID != null && order.OfferID != 0 && order.DesiredQuantity != 0 && order.DesiredQuantity <= order.Offer.Quantity)
+            if (order.BuyerUserID != null && order.OfferID != 0 && order.DesiredQuantity != 0 && order.DesiredQuantity <= order.Offer.Quantity)
             {
-                order.BuyerUser = db.Users.Find(order.BuyerID);
+                order.BuyerUser = db.Users.Find(order.BuyerUserID);
                 db.Entry(order.Offer).State = EntityState.Modified;
                 db.Orders.Add(order);
 
@@ -325,8 +328,6 @@ namespace foodisgood.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-
 
         protected override void Dispose(bool disposing)
         {
