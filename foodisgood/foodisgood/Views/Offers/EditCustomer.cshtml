@@ -50,11 +50,11 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.OfferType, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Expired, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.OfferType)
-                    @Html.ValidationMessageFor(model => model.OfferType, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Expired)
+                    @Html.ValidationMessageFor(model => model.Expired, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>

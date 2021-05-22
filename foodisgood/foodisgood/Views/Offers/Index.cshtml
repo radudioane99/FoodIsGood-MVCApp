@@ -34,7 +34,7 @@
             @Html.ActionLink("Expiration Date", "Index", new { sortOrder = ViewBag.EndDateSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OfferType)
+            @Html.DisplayNameFor(model => model.Expired)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
@@ -61,7 +61,7 @@
         @Html.DisplayFor(modelItem => item.EndTime)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.OfferType)
+        @Html.DisplayFor(modelItem => item.Expired)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Description)

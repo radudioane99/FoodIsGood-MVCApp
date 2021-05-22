@@ -18,12 +18,12 @@ namespace foodisgood.Controllers
         public ActionResult Index(string sortOrder, string searchString)
         {
             // Show expired offers!
-            var expiredOffers = db.Offers.Where(o => DateTime.Now > o.EndTime && o.OfferType == false).ToList();
+            var expiredOffers = db.Offers.Where(o => DateTime.Now > o.EndTime && o.Expired == false).ToList();
             if (expiredOffers.Any())
             {
                 foreach (Offer offer in expiredOffers)
                 {
-                    offer.OfferType = true;
+                    offer.Expired = true;
                     db.Entry(offer).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -36,7 +36,7 @@ namespace foodisgood.Controllers
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.EndDateSortParm = sortOrder == "EndDate" ? "endDate_desc" : "EndDate";
 
-            var offers = from s in db.Offers where s.OfferType == false select s;
+            var offers = from s in db.Offers where s.Expired == false select s;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -161,7 +161,7 @@ namespace foodisgood.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,PriceUnit,Quantity,CreateTime,EndTime,OfferType,Description,ProductID,UserID, Name")] Offer offer)
+        public ActionResult Create([Bind(Include = "ID,PriceUnit,Quantity,CreateTime,EndTime,Expired,Description,ProductID,UserID, Name")] Offer offer)
         {
             if (User.IsInRole("Customer"))
             {
@@ -178,6 +178,44 @@ namespace foodisgood.Controllers
             ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", offer.ProductID);
             return View(offer);
         }
+
+
+        // GET: Offers/Create
+        public ActionResult CreateCustomer()
+        {
+            //ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
+            if (User.IsInRole("AppAdmin"))
+            {
+                ViewBag.ProductID = new SelectList(db.Products, "ID", "Name");
+                return View();
+            }
+            else
+            {
+                ViewBag.ProductID = new SelectList(db.Products.OrderBy(p => p.Name), "ID", "Name");
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateCustomer([Bind(Include = "ID,PriceUnit,Quantity,CreateTime,EndTime,Expired,Description,ProductID,UserID, Name")] Offer offer)
+        {
+            if (User.IsInRole("Customer"))
+            {
+                // ViewBag.ProductID = new SelectList(db.Products.Where(p => p.Name == "Tomatoes"), "ID", "Name");
+                offer.UserID = User.Identity.GetUserId();
+                offer.CreateTime = DateTime.Now;
+            }
+            if (ModelState.IsValid)
+            {
+                db.Offers.Add(offer);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", offer.ProductID);
+            return View("CreateCustomer", offer);
+        }
+
 
         // GET: Offers/Edit/5
         public ActionResult Edit(int? id)
@@ -200,7 +238,7 @@ namespace foodisgood.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,PriceUnit,Quantity,CreateTime,EndTime,OfferType,Description,ProductID, UserID, Name")] Offer offer)
+        public ActionResult Edit([Bind(Include = "ID,PriceUnit,Quantity,CreateTime,EndTime,Expired,Description,ProductID, UserID, Name")] Offer offer)
         {
             if (ModelState.IsValid)
             {
@@ -229,7 +267,7 @@ namespace foodisgood.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditCustomer([Bind(Include = "ID,PriceUnit,Quantity,CreateTime,EndTime,OfferType,Description,ProductID, UserID, Name")] Offer offer)
+        public ActionResult EditCustomer([Bind(Include = "ID,PriceUnit,Quantity,CreateTime,EndTime,Expired,Description,ProductID, UserID, Name")] Offer offer)
         {
             if (ModelState.IsValid)
             {
@@ -266,7 +304,9 @@ namespace foodisgood.Controllers
             Offer offer = db.Offers.Find(id);
             db.Offers.Remove(offer);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            string id_string = id.ToString();
+            var myOffers = db.Offers.Where(o => o.UserID.Equals(id_string));
+            return RedirectToAction("MyOffers", myOffers.ToList());
         }
 
         protected override void Dispose(bool disposing)

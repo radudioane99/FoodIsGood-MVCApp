@@ -99,11 +99,11 @@ namespace foodisgood.Migrations
 
                 var offers = new List<Offer>
                 {
-                    new Offer{UserID = user[0].Id, Name="Offer one", PriceUnit=2, Quantity=100, CreateTime=DateTime.Parse("2021-4-3"), EndTime=DateTime.Parse("2021-9-3"), OfferType=false, Description="Quality 1", ProductID=product[0].ID},
-                    new Offer{UserID = user[0].Id, Name="I sell more stuff!", PriceUnit=4, Quantity=179, CreateTime=DateTime.Parse("2021-4-6"), EndTime=DateTime.Parse("2023-9-3"), OfferType=false, Description="", ProductID=product[0].ID},
-                    new Offer{UserID = user[0].Id, Name="Fantastic products!", PriceUnit=7, Quantity=163, CreateTime=DateTime.Parse("2021-4-18"), EndTime=DateTime.Parse("2022-9-3"), OfferType=false, Description="", ProductID=product[0].ID},
-                    new Offer{UserID = user[0].Id, Name="Great quality vegetables!", PriceUnit=9, Quantity=24, CreateTime=DateTime.Parse("2021-4-4"), EndTime=DateTime.Parse("2025-9-3"), OfferType=false, Description="Quality 2", ProductID=product[0].ID},
-                    new Offer{UserID = user[0].Id, Name="Lovely vegetables!", PriceUnit=4, Quantity=35, CreateTime=DateTime.Parse("2021-4-2"), EndTime=DateTime.Parse("2021-8-3"), OfferType=false, Description="Genius delivery.", ProductID=product[0].ID},
+                    new Offer{UserID = user[0].Id, Name="Offer one", PriceUnit=2, Quantity=100, CreateTime=DateTime.Parse("2021-4-3"), EndTime=DateTime.Parse("2021-9-3"), Expired=false, Description="Quality 1", ProductID=product[0].ID},
+                    new Offer{UserID = user[0].Id, Name="I sell more stuff!", PriceUnit=4, Quantity=179, CreateTime=DateTime.Parse("2021-4-6"), EndTime=DateTime.Parse("2023-9-3"), Expired=false, Description="", ProductID=product[0].ID},
+                    new Offer{UserID = user[0].Id, Name="Fantastic products!", PriceUnit=7, Quantity=163, CreateTime=DateTime.Parse("2021-4-18"), EndTime=DateTime.Parse("2022-9-3"), Expired=false, Description="", ProductID=product[0].ID},
+                    new Offer{UserID = user[0].Id, Name="Great quality vegetables!", PriceUnit=9, Quantity=24, CreateTime=DateTime.Parse("2021-4-4"), EndTime=DateTime.Parse("2025-9-3"), Expired=false, Description="Quality 2", ProductID=product[0].ID},
+                    new Offer{UserID = user[0].Id, Name="Lovely vegetables!", PriceUnit=4, Quantity=35, CreateTime=DateTime.Parse("2021-4-2"), EndTime=DateTime.Parse("2021-8-3"), Expired=false, Description="Genius delivery.", ProductID=product[0].ID},
                 };
                 offers.ForEach(s => context.Offers.Add(s));
                 context.SaveChanges();

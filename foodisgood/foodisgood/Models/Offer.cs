@@ -29,7 +29,7 @@ namespace foodisgood.Models
         public DateTime EndTime { get; set; }
 
         [Required]
-        public bool OfferType { get; set; }
+        public bool Expired { get; set; }
 
         public string Description { get; set; }
 

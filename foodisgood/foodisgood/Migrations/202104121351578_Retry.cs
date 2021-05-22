@@ -16,7 +16,7 @@ namespace foodisgood.Migrations
                         Quantity = c.Single(nullable: false),
                         CreateTime = c.DateTime(nullable: false),
                         EndTime = c.DateTime(nullable: false),
-                        OfferType = c.Boolean(nullable: false),
+                        Expired = c.Boolean(nullable: false),
                         Description = c.String(),
                         ProductID = c.Int(nullable: false),
                     })

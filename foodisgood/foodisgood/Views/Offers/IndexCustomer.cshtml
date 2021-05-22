@@ -5,7 +5,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create Your Own Offer", "Create")
+    @Html.ActionLink("Create Your Own Offer", "CreateCustomer")
 </p>
 
 @using (Html.BeginForm())
@@ -35,7 +35,7 @@
                 @Html.ActionLink("Expiration Date", "Index", new { sortOrder = ViewBag.EndDateSortParm })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OfferType)
+                @Html.DisplayNameFor(model => model.Expired)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
