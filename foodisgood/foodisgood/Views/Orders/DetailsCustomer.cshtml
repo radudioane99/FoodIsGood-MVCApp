@@ -8,26 +8,31 @@
     <h4>Order</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Offer.Description)
-        </dt>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Offer.Name)
+        </dt>
         <dd>
-            @Html.DisplayFor(model => model.Offer.Description)
+            @Html.DisplayFor(model => model.Offer.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BuyerID)
+            @Html.DisplayNameFor(model => model.Offer.User.UserName)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.BuyerID)
+            @Html.DisplayFor(model => model.Offer.User.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Offer.PriceUnit)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Offer.PriceUnit)
         </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.DesiredQuantity)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.DesiredQuantity)
         </dd>

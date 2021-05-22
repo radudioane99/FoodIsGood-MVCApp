@@ -24,7 +24,7 @@ namespace foodisgood.Models
         public virtual Offer Offer { get; set; }
 
         [Required]
-        [Display(Name = "Desired Quantity")]
+        [Display(Name = "Desired quantity")]
         public float DesiredQuantity { get; set; }
 
         public bool Accepted { get; set; }
