@@ -115,8 +115,11 @@ namespace foodisgood.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,BuyerUserID,OfferID,DesiredQuantity,Accepted")] Order order)
+        public ActionResult Edit([Bind(Include = "ID,DesiredQuantity,Accepted")] Order order)
         {
+            Order initialOrder = db.Orders.AsNoTracking().Single(o => o.ID.Equals(order.ID));
+            order.BuyerUserID = initialOrder.BuyerUserID;
+            order.OfferID = initialOrder.OfferID;
             if (ModelState.IsValid)
             {
                 db.Entry(order).State = EntityState.Modified;

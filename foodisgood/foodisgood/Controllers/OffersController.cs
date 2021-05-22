@@ -36,7 +36,11 @@ namespace foodisgood.Controllers
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.EndDateSortParm = sortOrder == "EndDate" ? "endDate_desc" : "EndDate";
 
-            var offers = from s in db.Offers where s.Expired == false select s;
+            var offers = from s in db.Offers select s;
+            if (User.IsInRole("Customer"))
+            {
+                offers = from s in db.Offers where s.Expired == false select s;
+            } 
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -238,8 +242,11 @@ namespace foodisgood.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,PriceUnit,Quantity,CreateTime,EndTime,Expired,Description,ProductID, UserID, Name")] Offer offer)
+        public ActionResult Edit([Bind(Include = "ID,PriceUnit,Quantity,CreateTime,EndTime,Expired,Description,Name")] Offer offer)
         {
+            Offer initialOffer = db.Offers.AsNoTracking().Single(o => o.ID.Equals(offer.ID));
+            offer.ProductID = initialOffer.ProductID;
+            offer.UserID = initialOffer.UserID;
             if (ModelState.IsValid)
             {
                 db.Entry(offer).State = EntityState.Modified;

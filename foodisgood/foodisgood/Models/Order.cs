@@ -13,7 +13,6 @@ namespace foodisgood.Models
         [Key]
         public int ID { get; set; }
 
-        [Required]
         public string BuyerUserID { get; set; }
 
         public virtual ApplicationUser BuyerUser { get; set; }
@@ -26,7 +25,7 @@ namespace foodisgood.Models
         [Required]
         [Display(Name = "Desired quantity")]
         public float DesiredQuantity { get; set; }
-
+        [Required]
         public bool Accepted { get; set; }
     }
 }
