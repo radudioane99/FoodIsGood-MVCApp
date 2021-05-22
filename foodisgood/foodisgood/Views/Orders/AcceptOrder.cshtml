@@ -32,6 +32,8 @@
     @using (Html.BeginForm())
     {
         <input type="submit" name="response" value="Accept Order" formaction=@Url.Action("AcceptOrder", "Orders") formmethod="post" class="btn btn-primary" />
+        <br />
+        <input type="submit" name="response" value="Back" formaction=@Url.Action("SeeOffers", "Offers", new { id = Model.OfferID}, null) formmethod="post" class="btn btn-primary" />
         @*<input type="submit" name="response" value="Refuse" formaction=@Url.Action("DeleteOrder","Orders") formmethod="post" class="btn btn-primary" />*@
     }
 </p>
