@@ -266,6 +266,14 @@
     <Compile Include="Migrations\202105220942375_BuyerUserChanged.designer.cs">
       <DependentUpon>202105220942375_BuyerUserChanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105221344464_OffersRequiredAdded.cs" />
+    <Compile Include="Migrations\202105221344464_OffersRequiredAdded.designer.cs">
+      <DependentUpon>202105221344464_OffersRequiredAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105221441539_OffersRequiredAdded1.cs" />
+    <Compile Include="Migrations\202105221441539_OffersRequiredAdded1.designer.cs">
+      <DependentUpon>202105221441539_OffersRequiredAdded1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DatabaseInitializer.cs" />
@@ -276,8 +284,10 @@
     <Compile Include="Models\OrderOffer.cs" />
     <Compile Include="Models\OrdersViewModel.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\ReviewModel.cs" />
     <Compile Include="Models\Rewiew.cs" />
+    <Compile Include="Models\UserEdit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Controllers\Utilities.cs" />
@@ -446,6 +456,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105220942375_BuyerUserChanged.resx">
       <DependentUpon>202105220942375_BuyerUserChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105221344464_OffersRequiredAdded.resx">
+      <DependentUpon>202105221344464_OffersRequiredAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105221441539_OffersRequiredAdded1.resx">
+      <DependentUpon>202105221441539_OffersRequiredAdded1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
