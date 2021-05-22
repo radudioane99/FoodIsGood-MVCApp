@@ -14,7 +14,7 @@ namespace foodisgood.Models
         public int ID { get; set; }
 
         [Required]
-        public string BuyerID { get; set; }
+        public string BuyerUserID { get; set; }
 
         public virtual ApplicationUser BuyerUser { get; set; }
 
