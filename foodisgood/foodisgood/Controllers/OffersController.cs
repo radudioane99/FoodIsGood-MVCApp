@@ -167,7 +167,7 @@ namespace foodisgood.Controllers
             {
                 // ViewBag.ProductID = new SelectList(db.Products.Where(p => p.Name == "Tomatoes"), "ID", "Name");
                 offer.UserID = User.Identity.GetUserId();
-                offer.CreateTime = DateTime.Now;
+                offer.CreateTime = DateTime.Now.Date;
             }
             if (ModelState.IsValid)
             {
@@ -318,7 +318,7 @@ namespace foodisgood.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult SeeOffers(int? id)
+        public ActionResult SeeOrders(int? id)
         {
             if (id == null)
             {

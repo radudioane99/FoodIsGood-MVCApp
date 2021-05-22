@@ -13,10 +13,11 @@ namespace foodisgood.Models
         public int ID { get; set; }
 
         [Required]
-        [Display(Name = "Offer Name")]
+        [Display(Name = "Offer title")]
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Price per unit")]
         public float PriceUnit { get; set; }
 
         [Required]
@@ -26,6 +27,7 @@ namespace foodisgood.Models
         public DateTime CreateTime { get; set; }
 
         [Required]
+        [Display(Name = "Expiration date")]
         public DateTime EndTime { get; set; }
 
         [Required]
