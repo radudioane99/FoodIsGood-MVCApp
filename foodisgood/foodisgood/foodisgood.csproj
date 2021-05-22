@@ -250,6 +250,10 @@
     <Compile Include="Migrations\202105101306148_DioaneTest.designer.cs">
       <DependentUpon>202105101306148_DioaneTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105220607044_ProductsStrippedDown.cs" />
+    <Compile Include="Migrations\202105220607044_ProductsStrippedDown.designer.cs">
+      <DependentUpon>202105220607044_ProductsStrippedDown.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DatabaseInitializer.cs" />
@@ -418,6 +422,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105101306148_DioaneTest.resx">
       <DependentUpon>202105101306148_DioaneTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105220607044_ProductsStrippedDown.resx">
+      <DependentUpon>202105220607044_ProductsStrippedDown.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

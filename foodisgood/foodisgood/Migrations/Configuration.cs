@@ -47,13 +47,17 @@ namespace foodisgood.Migrations
             {
                 var products = new List<Product>
                 {
-                    new Product{Name="Tomatoes",Type="Spanish",Quality=1,ExpirationDate=DateTime.Parse("2021-4-6")},
-                    new Product{Name="Carrots",Type="French",Quality=1,ExpirationDate=DateTime.Parse("2021-4-3")},
-                    new Product{Name="Oranges",Type="Portugese",Quality=1,ExpirationDate=DateTime.Parse("2021-5-6")},
-                    new Product{Name="Banana",Type="American",Quality=1,ExpirationDate=DateTime.Parse("2021-5-6")},
-                    new Product{Name="Pineapple",Type="Taiwanese",Quality=1,ExpirationDate=DateTime.Parse("2021-5-6")},
-                    new Product{Name="Apples",Type="French",Quality=1,ExpirationDate=DateTime.Parse("2021-5-6")},
-                    new Product{Name="Cucumber",Type="French",Quality=1,ExpirationDate=DateTime.Parse("2021-5-6")}
+                    new Product{Name="Tomatoes"},
+                    new Product{Name="Carrots"},
+                    new Product{Name="Oranges"},
+                    new Product{Name="Bananas"},
+                    new Product{Name="Pineapples"},
+                    new Product{Name="Apples"},
+                    new Product{Name="Cucumbers"},
+                    new Product{Name="Pears"},
+                    new Product{Name="Melons"},
+                    new Product{Name="Potatoes"},
+
                 };
                 products.ForEach(s => context.Products.Add(s));
                 context.SaveChanges();
