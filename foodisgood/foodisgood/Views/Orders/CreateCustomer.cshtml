@@ -181,25 +181,29 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" name="response" value="Place Order" formaction=@Url.Action("PostOrderToOffer","Orders") formmethod="post" class="btn btn-primary" />
+                    <input type="submit" name="response" value="Place Order" formaction=@Url.Action("PostOrderToOffer", "Orders") formmethod="post" class="btn btn-primary" />
                 </div>
             </div>
         }
     </div>
 
-    <script>
-        $(document).ready(function () {
-    </script>
-    @if (null != ViewBag.MyErrorMessage)
-    {
-        <script>
-            alert("@ViewBag.MyErrorMessage");
-        </script>
-    }
-    <script>
-    });
-    </script>
+
 </body>
+
+
+<script>
+    $(document).ready(function () {
+</script>
+@if (null != ViewBag.MyErrorMessage)
+{
+    <script>
+            alert("@ViewBag.MyErrorMessage");
+    </script>
+}
+<script>
+});
+</script>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

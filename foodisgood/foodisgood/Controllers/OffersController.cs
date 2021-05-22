@@ -267,7 +267,7 @@ namespace foodisgood.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditCustomer([Bind(Include = "ID,PriceUnit,Quantity,CreateTime,EndTime,Expired,Description,ProductID, UserID, Name")] Offer offer)
+        public ActionResult EditCustomer([Bind(Include = "ID, PriceUnit, Quantity, CreateTime, EndTime, Expired, Description, ProductID, UserID, Name")] Offer offer)
         {
             if (ModelState.IsValid)
             {

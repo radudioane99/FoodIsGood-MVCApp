@@ -111,17 +111,13 @@
             <p>Seller first name: @Html.DisplayFor(modelItem => item.User.FirstName)</p>
             <p>Seller last name: @Html.DisplayFor(modelItem => item.User.LastName)</p>
             <button id="btn_buy" class="btn">
-                @Html.ActionLink("Buy Now", "PlaceOffer", "Orders", new { id = item.ID }, null)
+                @Html.ActionLink("Buy Now", "PlaceOffer", "Orders", new { id = item.ID}, null)
             </button>
             <button id="btn_buy" class="btn">
                 @Html.ActionLink("See Seller Rewiews", "GetSellerRewiews", "Rewiews", new { id = item.ID }, null)
             </button>
 
-
             <button type="button" class="btn" data-toggle="modal" data-target="#@Html.DisplayFor(modelItem => item.ID)">Description</button>
-
-
-
 
             <div class="modal fade" id="@Html.DisplayFor(modelItem => item.ID)" role="dialog">
                 <div class="modal-dialog">
@@ -136,9 +132,11 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
+
                     </div>
 
                 </div>
+
             </div>
 
         </div>
