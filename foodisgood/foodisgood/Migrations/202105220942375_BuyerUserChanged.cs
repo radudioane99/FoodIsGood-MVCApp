@@ -13,12 +13,12 @@
             AlterColumn("dbo.Orders", "BuyerUserID", c => c.String(nullable: false, maxLength: 128));
             CreateIndex("dbo.Orders", "BuyerUserID");
             AddForeignKey("dbo.Orders", "BuyerUserID", "dbo.AspNetUsers", "Id", cascadeDelete: true);
-            DropColumn("dbo.Orders", "BuyerID");
+            DropColumn("dbo.Orders", "BuyerUserID");
         }
         
         public override void Down()
         {
-            AddColumn("dbo.Orders", "BuyerID", c => c.String(nullable: false));
+            AddColumn("dbo.Orders", "BuyerUserID", c => c.String(nullable: false));
             DropForeignKey("dbo.Orders", "BuyerUserID", "dbo.AspNetUsers");
             DropIndex("dbo.Orders", new[] { "BuyerUserID" });
             AlterColumn("dbo.Orders", "BuyerUserID", c => c.String(maxLength: 128));

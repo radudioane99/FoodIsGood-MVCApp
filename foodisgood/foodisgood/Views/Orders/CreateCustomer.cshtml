@@ -173,10 +173,10 @@
                 </div>
             </div>
             <div hidden class="form-group">
-                @Html.LabelFor(model => model.Order.BuyerID, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Order.BuyerUserID, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Order.BuyerID, new { disabled = "disabled", @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Order.BuyerID, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Order.BuyerUserID, new { disabled = "disabled", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Order.BuyerUserID, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">

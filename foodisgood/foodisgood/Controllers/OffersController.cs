@@ -267,13 +267,21 @@ namespace foodisgood.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditCustomer([Bind(Include = "ID, PriceUnit, Quantity, CreateTime, EndTime, Expired, Description, ProductID, UserID, Name")] Offer offer)
+        public ActionResult EditCustomer([Bind(Include = "ID, Quantity, EndTime, Description, Name")] Offer offer)
         {
+            Offer initialOffer = db.Offers.AsNoTracking().Single(o => o.ID.Equals(offer.ID));
+            offer.ProductID = initialOffer.ProductID;
+            offer.UserID = initialOffer.UserID;
+            offer.CreateTime = initialOffer.CreateTime;
+            // offer.Name = initialOffer.Name;
+            offer.PriceUnit = initialOffer.PriceUnit;
+            offer.Expired = initialOffer.Expired;
+
             if (ModelState.IsValid)
             {
                 db.Entry(offer).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyOffers");
             }
             ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", offer.ProductID);
             return View(offer);

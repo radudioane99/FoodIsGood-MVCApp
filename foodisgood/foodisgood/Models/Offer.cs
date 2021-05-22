@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
-
+using System.Data.Entity;
+using System.Web.UI.WebControls;
 
 namespace foodisgood.Models
 {
@@ -24,10 +25,15 @@ namespace foodisgood.Models
         public float Quantity { get; set; }
 
         [Required]
+        [Display(Name = "Creation date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime CreateTime { get; set; }
 
         [Required]
         [Display(Name = "Expiration date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime EndTime { get; set; }
 
         [Required]

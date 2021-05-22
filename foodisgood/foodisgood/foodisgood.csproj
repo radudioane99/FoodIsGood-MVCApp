@@ -370,6 +370,10 @@
     <Content Include="Views\Orders\EditCustomer.cshtml" />
     <Content Include="Views\Orders\DeleteOrder.cshtml" />
     <Content Include="Views\Orders\CompleteOrder.cshtml" />
+    <Content Include="Views\Manage\AddEmail.cshtml" />
+    <Content Include="Views\Manage\AddLastName.cshtml" />
+    <Content Include="Views\Manage\AddFirstName.cshtml" />
+    <Content Include="Views\Manage\AddCommon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
