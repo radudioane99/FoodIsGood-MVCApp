@@ -11,7 +11,7 @@ namespace foodisgood.Models
         public string UserID { get; set; }
 
         [Required]
-        [Display(Name = "Rewiew message")]
+        [Display(Name = "Review message")]
         public string Text { get; set; }
 
         public DateTime date { get; set; }
