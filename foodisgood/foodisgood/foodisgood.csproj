@@ -262,6 +262,10 @@
     <Compile Include="Migrations\202105220810244_Domsa_Offer_Expiration.designer.cs">
       <DependentUpon>202105220810244_Domsa_Offer_Expiration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105220942375_BuyerUserChanged.cs" />
+    <Compile Include="Migrations\202105220942375_BuyerUserChanged.designer.cs">
+      <DependentUpon>202105220942375_BuyerUserChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DatabaseInitializer.cs" />
@@ -439,6 +443,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105220810244_Domsa_Offer_Expiration.resx">
       <DependentUpon>202105220810244_Domsa_Offer_Expiration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105220942375_BuyerUserChanged.resx">
+      <DependentUpon>202105220942375_BuyerUserChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
