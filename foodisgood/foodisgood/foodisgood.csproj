@@ -283,6 +283,10 @@
     <Compile Include="Migrations\202105231020500_ReviewFinalForm.designer.cs">
       <DependentUpon>202105231020500_ReviewFinalForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105231308464_AddStarsAverageToOffer.cs" />
+    <Compile Include="Migrations\202105231308464_AddStarsAverageToOffer.designer.cs">
+      <DependentUpon>202105231308464_AddStarsAverageToOffer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DatabaseInitializer.cs" />
@@ -483,6 +487,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105231020500_ReviewFinalForm.resx">
       <DependentUpon>202105231020500_ReviewFinalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105231308464_AddStarsAverageToOffer.resx">
+      <DependentUpon>202105231308464_AddStarsAverageToOffer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
