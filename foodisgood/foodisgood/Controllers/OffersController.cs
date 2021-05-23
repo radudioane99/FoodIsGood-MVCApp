@@ -18,12 +18,14 @@ namespace foodisgood.Controllers
         // GET: Offers
         public ActionResult Index(string sortOrder, string searchString)
         {
-            // Show expired offers!
+
+            // Recalculate stars average
             List<Offer> offerList = db.Offers.ToList();
             foreach (Offer offer in offerList)
             {
                 offer.StarsAverage = this.GetStarsAverage(offer.UserID);
             }
+            // Show expired offers!
             var expiredOffers = db.Offers.Where(o => DateTime.Now > o.EndTime && o.Expired == false).ToList();
             if (expiredOffers.Any())
             {
@@ -34,8 +36,8 @@ namespace foodisgood.Controllers
                     db.SaveChanges();
                 }
             }
-            // Done deleting.
 
+            // Done deleting.
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
             ViewBag.QuantitySortParm = sortOrder == "Quantity" ? "quantity_desc" : "Quantity";
@@ -43,9 +45,11 @@ namespace foodisgood.Controllers
             ViewBag.EndDateSortParm = sortOrder == "EndDate" ? "endDate_desc" : "EndDate";
 
             var offers = from s in db.Offers select s;
+
+            var ID = User.Identity.GetUserId();
             if (User.IsInRole("Customer"))
             {
-                offers = from s in db.Offers where s.Expired == false select s;
+                offers = from s in db.Offers where s.Expired == false && s.UserID != ID select s;
             }
 
             if (!String.IsNullOrEmpty(searchString))
@@ -88,7 +92,6 @@ namespace foodisgood.Controllers
                     offers = offers.OrderBy(s => s.Name);
                     break;
             }
-
 
             if (User.IsInRole("AppAdmin"))
             {
@@ -300,8 +303,6 @@ namespace foodisgood.Controllers
             ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", offer.ProductID);
             return View(offer);
         }
-
-
 
         // GET: Offers/Delete/5
         public ActionResult Delete(int? id)

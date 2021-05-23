@@ -248,41 +248,25 @@ namespace foodisgood.Controllers
             var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
             var manager = new UserManager<ApplicationUser>(store);
             var currentUser = manager.FindById(User.Identity.GetUserId());
-            bool changed = false;
             if (model.LastName != null)
             {
                 currentUser.LastName = model.LastName;
             }
-            else
-            {
-                changed = true;
-            }
+
             if (model.FirstName != null)
             {
                 currentUser.FirstName = model.FirstName;
             }
-            else
-            {
-                changed = true;
-            }
+
             if (model.Location != null)
             {
                 currentUser.Location = model.Location;
             }
-            else
-            {
-                changed = true;
-            }
-            if (changed)
-            {
-                await manager.UpdateAsync(currentUser);
-                var ctx = store.Context;
-                ctx.SaveChanges();
-                return RedirectToAction("Index", new { Message = ManageMessageId.Success });
-            }
-            return RedirectToAction("Index", new { Message = ManageMessageId.NothingChanged });
 
-
+            await manager.UpdateAsync(currentUser);
+            var ctx = store.Context;
+            ctx.SaveChanges();
+            return RedirectToAction("Index", new { Message = ManageMessageId.Success });
         }
 
         //
