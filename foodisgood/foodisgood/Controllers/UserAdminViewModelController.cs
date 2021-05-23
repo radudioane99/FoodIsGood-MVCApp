@@ -33,7 +33,9 @@ namespace foodisgood.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            string ID = User.Identity.GetUserId();
+            var users = db.Users.Where(u => u.Id != ID).ToList();
+            return View(users);
         }
 
         public ActionResult Edit(string email)
@@ -67,7 +69,6 @@ namespace foodisgood.Controllers
             await UserManager.UpdateAsync(currentUser);
             var ctx = store.Context;
             ctx.SaveChanges();
-            TempData["msg"] = "Profile Changes Saved !";
             return RedirectToAction("Index");
         }
 
@@ -105,7 +106,7 @@ namespace foodisgood.Controllers
             }
             db.Users.Remove(user);
             db.SaveChanges();
-            return View("Index", db.Users.ToList());
+            return View("Index");
         }
     }
 }
