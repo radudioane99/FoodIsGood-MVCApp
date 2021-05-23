@@ -59,6 +59,7 @@ namespace foodisgood.Controllers
             reviewModel.userId = id;
             reviewModel.PersonFirstname = userReviewed.FirstName;
             reviewModel.PersonLastname = userReviewed.LastName;
+            reviewModel.StarsAverage = this.GetStarsAverage(id);
             return View("Rewiews", reviewModel);
         }
 
