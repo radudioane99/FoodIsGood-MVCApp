@@ -285,7 +285,6 @@
     <Compile Include="Models\OrderOffer.cs" />
     <Compile Include="Models\OrdersViewModel.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\ReviewModel.cs" />
     <Compile Include="Models\Rewiew.cs" />
     <Compile Include="Models\UserAdminViewModel.cs" />
