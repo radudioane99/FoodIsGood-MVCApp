@@ -38,34 +38,36 @@ namespace foodisgood.Controllers
             return View(users);
         }
 
-        public ActionResult Edit(string email)
+        public ActionResult Edit(string id)
         {
             ApplicationUser appUser = new ApplicationUser();
-            appUser = UserManager.FindByEmail(email);
-            UserAdminViewModel user = new UserAdminViewModel();
-            user.Location = appUser.Location;
-            user.FirstName = appUser.FirstName;
-            user.LastName = appUser.LastName;
-            user.PhoneNumber = appUser.PhoneNumber;
+            appUser = UserManager.FindById(id);
+            UserAdminViewModel viewUser = new UserAdminViewModel();
+            viewUser.Id = appUser.Id;
+            viewUser.Location = appUser.Location;
+            viewUser.FirstName = appUser.FirstName;
+            viewUser.LastName = appUser.LastName;
+            viewUser.PhoneNumber = appUser.PhoneNumber;
+            viewUser.Email = appUser.Email;
 
-            return View(user);
+            return View(viewUser);
         }
 
         [HttpPost]
         public async Task<ActionResult> Edit(UserAdminViewModel model)
         {
-
-
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
             var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
-            var currentUser = UserManager.FindByEmail(model.Email);
+            var currentUser = UserManager.FindById(model.Id);
             currentUser.FirstName = model.FirstName;
             currentUser.LastName = model.LastName;
             currentUser.PhoneNumber = model.PhoneNumber;
             currentUser.Location = model.Location;
+            currentUser.Email = model.Email;
+            currentUser.UserName = model.Email;
             await UserManager.UpdateAsync(currentUser);
             var ctx = store.Context;
             ctx.SaveChanges();

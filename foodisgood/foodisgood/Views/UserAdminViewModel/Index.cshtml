@@ -51,7 +51,7 @@
                             @Html.DisplayFor(modelItem => item.Location)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { email = item.Email })
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id})
                             @Html.ActionLink("Delete", "Delete", new { id = item.Id})
                         </td>
                     </tr>

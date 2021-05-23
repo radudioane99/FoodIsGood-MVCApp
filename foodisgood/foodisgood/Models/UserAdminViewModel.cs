@@ -9,6 +9,8 @@ namespace foodisgood.Models
     public class UserAdminViewModel
     {
         [Required]
+        public string Id { get; set; }
+        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
