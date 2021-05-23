@@ -37,15 +37,19 @@ namespace foodisgood.Controllers
             ViewBag.EndDateSortParm = sortOrder == "EndDate" ? "endDate_desc" : "EndDate";
 
             var offers = from s in db.Offers select s;
+
+            var ID = User.Identity.GetUserId();
             if (User.IsInRole("Customer"))
             {
-                offers = from s in db.Offers where s.Expired == false select s;
+                offers = from s in db.Offers where s.Expired == false && s.UserID != ID select s;
             } 
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 offers = offers.Where(s => s.Name.Contains(searchString));
             }
+
+            
 
             offers = offers.Where(s => s.Quantity > 0);
 
@@ -346,7 +350,7 @@ namespace foodisgood.Controllers
                 return HttpNotFound();
             }
             var offerOrders = db.Orders.Where(o => o.OfferID == id);
-            return View("~/Views/Orders/OrdersOfMyOffer.cshtml",offerOrders.ToList());
+            return View("~/Views/Orders/OrdersOfMyOffer.cshtml", offerOrders.ToList());
         }
     }
 }
