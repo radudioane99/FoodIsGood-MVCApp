@@ -36,11 +36,15 @@ namespace foodisgood.Controllers
             string text = form["Text"];
             string id = form["Id"];
             string note = form["Note"];
+            var user = db.Users.Where(x => x.Email.Equals(this.User.Identity.Name)).FirstOrDefault();
             Rewiew rewiew = new Rewiew();
             rewiew.UserID = id;
             rewiew.Text = text;
             rewiew.date = DateTime.Now;
             rewiew.note = Convert.ToInt32(note);
+            rewiew.UserReviewer = user.Id;
+            rewiew.ReviewerFirstname = user.FirstName;
+            rewiew.ReviewerLastname = user.LastName;
             db.Rewiews.Add(rewiew);
             db.SaveChanges();
             var rewiews = db.Rewiews.ToList();

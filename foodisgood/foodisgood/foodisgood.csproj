@@ -275,6 +275,14 @@
     <Compile Include="Migrations\202105221441539_OffersRequiredAdded1.designer.cs">
       <DependentUpon>202105221441539_OffersRequiredAdded1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105231014172_AddTheReviewer.cs" />
+    <Compile Include="Migrations\202105231014172_AddTheReviewer.designer.cs">
+      <DependentUpon>202105231014172_AddTheReviewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105231020500_ReviewFinalForm.cs" />
+    <Compile Include="Migrations\202105231020500_ReviewFinalForm.designer.cs">
+      <DependentUpon>202105231020500_ReviewFinalForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DatabaseInitializer.cs" />
@@ -469,6 +477,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105221441539_OffersRequiredAdded1.resx">
       <DependentUpon>202105221441539_OffersRequiredAdded1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105231014172_AddTheReviewer.resx">
+      <DependentUpon>202105231014172_AddTheReviewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105231020500_ReviewFinalForm.resx">
+      <DependentUpon>202105231020500_ReviewFinalForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
