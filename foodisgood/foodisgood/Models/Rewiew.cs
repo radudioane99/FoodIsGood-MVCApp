@@ -18,5 +18,11 @@ namespace foodisgood.Models
 
         public int note { get; set; }
 
+        public string UserReviewer { get; set; }
+
+        public string ReviewerFirstname { get; set; }
+
+        public string ReviewerLastname { get; set; }
+
     }
 }

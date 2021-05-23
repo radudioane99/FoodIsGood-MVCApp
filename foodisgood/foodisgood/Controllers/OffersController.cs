@@ -1,6 +1,7 @@
 ﻿using foodisgood.Models;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -18,6 +19,12 @@ namespace foodisgood.Controllers
         public ActionResult Index(string sortOrder, string searchString)
         {
 
+            // Recalculate stars average
+            List<Offer> offerList = db.Offers.ToList();
+            foreach (Offer offer in offerList)
+            {
+                offer.StarsAverage = this.GetStarsAverage(offer.UserID);
+            }
             // Show expired offers!
             var expiredOffers = db.Offers.Where(o => DateTime.Now > o.EndTime && o.Expired == false).ToList();
             if (expiredOffers.Any())
@@ -43,7 +50,7 @@ namespace foodisgood.Controllers
             if (User.IsInRole("Customer"))
             {
                 offers = from s in db.Offers where s.Expired == false && s.UserID != ID select s;
-            } 
+            }
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -347,6 +354,19 @@ namespace foodisgood.Controllers
             }
             var offerOrders = db.Orders.Where(o => o.OfferID == id);
             return View("~/Views/Orders/OrdersOfMyOffer.cshtml", offerOrders.ToList());
+        }
+        private string GetStarsAverage(string usrId)
+        {
+            List<Rewiew> userReviews = this.db.Rewiews.Where(x => x.UserID.Equals(usrId)).ToList();
+            float sum = 0;
+            int contor = 0;
+            foreach (Rewiew rewiew in userReviews)
+            {
+                contor++;
+                sum = sum + rewiew.note;
+            }
+            float average = (float)sum / contor;
+            return average.ToString("0.00");
         }
     }
 }

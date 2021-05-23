@@ -7,6 +7,17 @@
 <div class="row">
     @if (Model.rewiews.Any())
     {
+        <div class="bigTitle">
+            @Html.DisplayFor(Model => Model.PersonFirstname)  @Html.DisplayFor(Model => Model.PersonLastname)  <span>'s reviews</span>
+        </div>
+
+        <br />
+
+        <div class="bigTitle">
+            Average :  @Html.DisplayFor(Model => Model.StarsAverage)  <span>&#9733;</span>
+        </div>
+
+        <br />
         foreach (var item in Model.rewiews)
         {
 
@@ -19,9 +30,20 @@
                     </div>
                     <div class="text-justify thumbnail">
                         <div>
-                         <p style=" text-align:justify;max-width: 200px;">   <strong>Review:</strong> @Html.DisplayFor(modelItem => item.Text)</p>
+                            <p style=" text-align:justify;max-width: 200px;">   <strong>Review:</strong> @Html.DisplayFor(modelItem => item.Text)</p>
                         </div>
                     </div>
+                    <div class="text-justify thumbnail">
+                        <div>
+                            <p style=" text-align:justify;max-width: 200px;">   <strong>First Name:</strong> @Html.DisplayFor(modelItem => item.ReviewerFirstname)</p>
+                        </div>
+                    </div>
+                    <div class="text-justify thumbnail">
+                        <div>
+                            <p style=" text-align:justify;max-width: 200px;">   <strong>Last Name:</strong> @Html.DisplayFor(modelItem => item.ReviewerLastname)</p>
+                        </div>
+                    </div>
+
                     <div class="thumbnail ">
                         <div>
                             <p><strong>Stars given out of 5:</strong></p>
@@ -69,6 +91,8 @@
 
     </div>
 </div>
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -124,5 +148,9 @@
 
     .btn:hover {
         opacity: 1;
+    }
+    .bigTitle{
+        text-align:center;
+        font-size: 30px;
     }
 </style>
