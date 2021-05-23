@@ -12,6 +12,14 @@ namespace foodisgood.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        /// <summary>
+        /// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        /// </summary>
+        public bool HasEmail { get; set; }
+        public string Email { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Location { get; set; }
     }
 
     public class ManageLoginsViewModel
@@ -64,6 +72,40 @@ namespace foodisgood.Models
         [Phone]
         [Display(Name = "Phone Number")]
         public string Number { get; set; }
+    }
+
+    public class AddEmailViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+    }
+
+    public class AddCommonViewModel
+    {
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Display(Name = "Last Name")]
+        public string LastName{ get; set; }
+
+        [Display(Name = "Location")]
+        public string Location { get; set; }
+    }
+
+    public class AddFirstNameViewModel
+    {
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+    }
+
+    public class AddLastNameViewModel
+    {
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
     }
 
     public class VerifyPhoneNumberViewModel

@@ -25,6 +25,7 @@ namespace foodisgood.Models
         public float Quantity { get; set; }
 
         [Required]
+        [Display(Name = "Creation date")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime CreateTime { get; set; }

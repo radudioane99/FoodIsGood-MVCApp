@@ -40,7 +40,7 @@ namespace foodisgood.Controllers
             var id = User.Identity.GetUserId();
             id = id.ToString();
             var myOffers = db.Orders.Where(o => o.BuyerUserID.Equals(id));
-            return View("MyOrders", myOffers.ToList());
+            return View("MyOrders", myOffers.ToList()); 
         }
 
         // GET: Orders/Details/5
@@ -158,7 +158,7 @@ namespace foodisgood.Controllers
 
         // Dioane kill yourself pls!
         [HttpGet, ActionName("PlaceOffer")]
-        public ActionResult PlaceOffer(int? id)
+        public ActionResult PlaceOffer(int? id, bool? error)   // "id" is the offer id 
         {
             OrderOffer model = new OrderOffer();
             Offer offer = db.Offers.Find(id);
@@ -180,6 +180,13 @@ namespace foodisgood.Controllers
                 order.BuyerUser = db.Users.FirstOrDefault(x => x.Id == order.BuyerUserID);
                 model.Order = order;
                 model.Offer = offer;
+                if (error != null)
+                {
+                    if(error == true)
+                    {
+                        ViewBag.MyErrorMessage = "Quantity is too big!";
+                    }
+                }
                 return View("CreateCustomer", model);
             }
         }
@@ -206,18 +213,16 @@ namespace foodisgood.Controllers
                 */
 
                 db.SaveChanges();
-                return RedirectToAction("MyOrders");
+                return RedirectToAction("PlaceOffer");
             }
             else if (order.DesiredQuantity > order.Offer.Quantity) // Domsa
             {
                 // Recreating the model such that we can "refresh" the page
                 OrderOffer model = new OrderOffer();
-                model.Order = order;
-                model.Offer = order.Offer;
                 // Adds the error message to the ViewBag -- Checked in View
-                ViewBag.MyErrorMessage = "Quantity is too big!";
+                
                 // "Refresh" the page (calls the page with the same model as parameter)
-                return View("CreateCustomer", model);
+                return RedirectToAction("PlaceOffer", new { id = order.OfferID, error = true});
             }
             else
             {
@@ -326,7 +331,7 @@ namespace foodisgood.Controllers
             order.Offer.Quantity += order.DesiredQuantity;
             db.Orders.Remove(order);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("MyOrders");
         }
 
         protected override void Dispose(bool disposing)

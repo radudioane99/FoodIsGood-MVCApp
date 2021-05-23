@@ -381,6 +381,10 @@
     <Content Include="Views\Orders\EditCustomer.cshtml" />
     <Content Include="Views\Orders\DeleteOrder.cshtml" />
     <Content Include="Views\Orders\CompleteOrder.cshtml" />
+    <Content Include="Views\Manage\AddEmail.cshtml" />
+    <Content Include="Views\Manage\AddLastName.cshtml" />
+    <Content Include="Views\Manage\AddFirstName.cshtml" />
+    <Content Include="Views\Manage\AddCommon.cshtml" />
     <Content Include="Views\UserAdminViewModel\Index.cshtml" />
     <Content Include="Views\UserAdminViewModel\Edit.cshtml" />
     <Content Include="Views\UserAdminViewModel\Delete.cshtml" />

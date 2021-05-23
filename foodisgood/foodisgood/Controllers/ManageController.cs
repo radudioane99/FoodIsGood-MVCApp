@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using foodisgood.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace foodisgood.Controllers
 {
@@ -15,7 +16,7 @@ namespace foodisgood.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ManageController()
         {
         }
@@ -61,14 +62,20 @@ namespace foodisgood.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.Success ? "Success!"
+                : message == ManageMessageId.NothingChanged ? "Nothing was changed!"
                 : "";
 
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
+                HasEmail = HasMail(),
+                Email = await UserManager.GetEmailAsync(userId),
+                FirstName = GetFirstName(),
+                LastName = GetLastName(),
+                Location = GetLocation(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
@@ -116,33 +123,166 @@ namespace foodisgood.Controllers
             {
                 return View(model);
             }
-            // Generate the token and send it
-            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
-            if (UserManager.SmsService != null)
-            {
-                var message = new IdentityMessage
-                {
-                    Destination = model.Number,
-                    Body = "Your security code is: " + code
-                };
-                await UserManager.SmsService.SendAsync(message);
-            }
-            return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
+
+
+            var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            var manager = new UserManager<ApplicationUser>(store);
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+
+            currentUser.PhoneNumber = model.Number;
+            await manager.UpdateAsync(currentUser);
+            var ctx = store.Context;
+            ctx.SaveChanges();
+
+
+            return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
         }
 
         //
-        // POST: /Manage/EnableTwoFactorAuthentication
+        // GET: /Manage/AddEmail
+        public ActionResult AddEmail()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Manage/AddEmail
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EnableTwoFactorAuthentication()
+        public async Task<ActionResult> AddEmail(AddEmailViewModel model)
         {
-            await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), true);
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user != null)
+            if (!ModelState.IsValid)
             {
-                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                return View(model);
             }
-            return RedirectToAction("Index", "Manage");
+
+            var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            var manager = new UserManager<ApplicationUser>(store);
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+
+            currentUser.Email = model.Email;
+            await manager.UpdateAsync(currentUser);
+            var ctx = store.Context;
+            ctx.SaveChanges();
+
+            return RedirectToAction("Index", new { Message = ManageMessageId.Success });
+        }
+
+        public ActionResult ChangeEmail()
+        {
+            return View();
+        }
+
+        public ActionResult AddFirstName()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Manage/AddEmail
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddFirstName(AddFirstNameViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            var manager = new UserManager<ApplicationUser>(store);
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+
+            currentUser.FirstName = model.FirstName;
+            await manager.UpdateAsync(currentUser);
+            var ctx = store.Context;
+            ctx.SaveChanges();
+
+            return RedirectToAction("Index", new { Message = ManageMessageId.Success });
+        }
+
+        public ActionResult AddLastName()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Manage/AddEmail
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddLastName(AddLastNameViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            var manager = new UserManager<ApplicationUser>(store);
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+
+            currentUser.LastName = model.LastName;
+            await manager.UpdateAsync(currentUser);
+            var ctx = store.Context;
+            ctx.SaveChanges();
+
+            return RedirectToAction("Index", new { Message = ManageMessageId.Success });
+        }
+
+        public ActionResult AddCommon()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Manage/AddEmail
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddCommon(AddCommonViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+            var manager = new UserManager<ApplicationUser>(store);
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            bool changed = false;
+            if (model.LastName != null)
+            {
+                currentUser.LastName = model.LastName;
+            }
+            else
+            {
+                changed = true;
+            }
+            if (model.FirstName != null)
+            {
+                currentUser.FirstName = model.FirstName;
+            }
+            else
+            {
+                changed = true;
+            }
+            if (model.Location != null)
+            {
+                currentUser.Location = model.Location;
+            }
+            else
+            {
+                changed = true;
+            }
+            if (changed)
+            {
+                await manager.UpdateAsync(currentUser);
+                var ctx = store.Context;
+                ctx.SaveChanges();
+                return RedirectToAction("Index", new { Message = ManageMessageId.Success });
+            }
+            return RedirectToAction("Index", new { Message = ManageMessageId.NothingChanged });
+
+
         }
 
         //
@@ -160,39 +300,8 @@ namespace foodisgood.Controllers
             return RedirectToAction("Index", "Manage");
         }
 
-        //
-        // GET: /Manage/VerifyPhoneNumber
-        public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
-        {
-            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
-            // Send an SMS through the SMS provider to verify the phone number
-            return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
-        }
 
-        //
-        // POST: /Manage/VerifyPhoneNumber
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            var result = await UserManager.ChangePhoneNumberAsync(User.Identity.GetUserId(), model.PhoneNumber, model.Code);
-            if (result.Succeeded)
-            {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                }
-                return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
-            }
-            // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "Failed to verify phone");
-            return View(model);
-        }
+       
 
         //
         // POST: /Manage/RemovePhoneNumber
@@ -212,6 +321,7 @@ namespace foodisgood.Controllers
             }
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
+
 
         //
         // GET: /Manage/ChangePassword
@@ -353,6 +463,36 @@ namespace foodisgood.Controllers
             }
         }
 
+        private string GetFirstName()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (user != null)
+            {
+                return user.FirstName; 
+            }
+            return null;
+        }
+
+        private string GetLastName()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (user != null)
+            {
+                return user.LastName;
+            }
+            return null;
+        }
+
+        private string GetLocation()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (user != null)
+            {
+                return user.Location;
+            }
+            return null;
+        }
+
         private bool HasPassword()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -373,6 +513,16 @@ namespace foodisgood.Controllers
             return false;
         }
 
+        private bool HasMail()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (user != null)
+            {
+                return user.Email != null;
+            }
+            return false;
+        }
+
         public enum ManageMessageId
         {
             AddPhoneSuccess,
@@ -381,6 +531,8 @@ namespace foodisgood.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
+            Success,
+            NothingChanged,
             Error
         }
 

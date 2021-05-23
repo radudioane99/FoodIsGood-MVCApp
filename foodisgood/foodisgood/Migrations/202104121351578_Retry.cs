@@ -41,7 +41,7 @@ namespace foodisgood.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        BuyerID = c.Int(nullable: false),
+                        BuyerUserID = c.Int(nullable: false),
                         OfferID = c.Int(nullable: false),
                         DesiredQuantity = c.Single(nullable: false),
                         BuyerUser_Id = c.String(maxLength: 128),

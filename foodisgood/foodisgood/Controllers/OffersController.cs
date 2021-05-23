@@ -289,7 +289,7 @@ namespace foodisgood.Controllers
             {
                 db.Entry(offer).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyOffers");
             }
             ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", offer.ProductID);
             return View(offer);
