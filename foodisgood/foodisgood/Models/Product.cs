@@ -12,6 +12,7 @@ namespace foodisgood.Models
         public int ID { get; set; }
 
         [Required]
+        [Display(Name = "Product Name")]
         public string Name { get; set; }
 
         public virtual ICollection<Offer> Offers { get; set; }

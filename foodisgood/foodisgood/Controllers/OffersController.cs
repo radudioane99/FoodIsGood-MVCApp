@@ -17,6 +17,7 @@ namespace foodisgood.Controllers
         // GET: Offers
         public ActionResult Index(string sortOrder, string searchString)
         {
+
             // Show expired offers!
             var expiredOffers = db.Offers.Where(o => DateTime.Now > o.EndTime && o.Expired == false).ToList();
             if (expiredOffers.Any())
@@ -28,8 +29,8 @@ namespace foodisgood.Controllers
                     db.SaveChanges();
                 }
             }
-            // Done deleting.
 
+            // Done deleting.
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
             ViewBag.QuantitySortParm = sortOrder == "Quantity" ? "quantity_desc" : "Quantity";
@@ -48,8 +49,6 @@ namespace foodisgood.Controllers
             {
                 offers = offers.Where(s => s.Name.Contains(searchString));
             }
-
-            
 
             offers = offers.Where(s => s.Quantity > 0);
 
@@ -86,7 +85,6 @@ namespace foodisgood.Controllers
                     offers = offers.OrderBy(s => s.Name);
                     break;
             }
-
 
             if (User.IsInRole("AppAdmin"))
             {
@@ -298,8 +296,6 @@ namespace foodisgood.Controllers
             ViewBag.ProductID = new SelectList(db.Products, "ID", "Name", offer.ProductID);
             return View(offer);
         }
-
-
 
         // GET: Offers/Delete/5
         public ActionResult Delete(int? id)
