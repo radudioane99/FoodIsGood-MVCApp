@@ -117,11 +117,11 @@ namespace foodisgood.Migrations
 
                 var offers2 = new List<Offer>
                 {
-                    new Offer{UserID = users[1].Id, Name="Best carrots in town!", PriceUnit=5, Quantity=100, CreateTime=DateTime.Parse("2021-4-3"), EndTime=DateTime.Parse("2021-9-3"), Expired=false, Description="The very best!", ProductID=product[0].ID},
-                    new Offer{UserID = users[1].Id, Name="More carrots!", PriceUnit=4, Quantity=179, CreateTime=DateTime.Parse("2021-4-6"), EndTime=DateTime.Parse("2023-9-3"), Expired=false, Description="The loveliest products!", ProductID=product[0].ID},
-                    new Offer{UserID = users[2].Id, Name="Fantastic carrots!", PriceUnit=7, Quantity=163, CreateTime=DateTime.Parse("2021-4-18"), EndTime=DateTime.Parse("2022-9-3"), Expired=false, Description="Come over at my place to pick them up!", ProductID=product[0].ID},
-                    new Offer{UserID = users[2].Id, Name="Expensive, but great carrots!", PriceUnit=9, Quantity=24, CreateTime=DateTime.Parse("2021-4-4"), EndTime=DateTime.Parse("2025-9-3"), Expired=false, Description="Buy from us!", ProductID=product[0].ID},
-                    new Offer{UserID = users[0].Id, Name="Lovely vegetables!", PriceUnit=4, Quantity=35, CreateTime=DateTime.Parse("2021-4-2"), EndTime=DateTime.Parse("2021-8-3"), Expired=false, Description="Exquisite delivery!", ProductID=product[0].ID},
+                    new Offer{UserID = users[1].Id, Name="Best carrots in town!", PriceUnit=5, Quantity=100, CreateTime=DateTime.Parse("2021-4-3"), EndTime=DateTime.Parse("2021-9-3"), Expired=false, Description="The very best!", ProductID=product2[0].ID},
+                    new Offer{UserID = users[1].Id, Name="More carrots!", PriceUnit=4, Quantity=179, CreateTime=DateTime.Parse("2021-4-6"), EndTime=DateTime.Parse("2023-9-3"), Expired=false, Description="The loveliest products!", ProductID=product2[0].ID},
+                    new Offer{UserID = users[2].Id, Name="Fantastic carrots!", PriceUnit=7, Quantity=163, CreateTime=DateTime.Parse("2021-4-18"), EndTime=DateTime.Parse("2022-9-3"), Expired=false, Description="Come over at my place to pick them up!", ProductID=product2[0].ID},
+                    new Offer{UserID = users[2].Id, Name="Expensive, but great carrots!", PriceUnit=9, Quantity=24, CreateTime=DateTime.Parse("2021-4-4"), EndTime=DateTime.Parse("2025-9-3"), Expired=false, Description="Buy from us!", ProductID=product2[0].ID},
+                    new Offer{UserID = users[0].Id, Name="Lovely vegetables!", PriceUnit=4, Quantity=35, CreateTime=DateTime.Parse("2021-4-2"), EndTime=DateTime.Parse("2021-8-3"), Expired=false, Description="Exquisite delivery!", ProductID=product2[0].ID},
                 };
                 offers2.ForEach(s => context.Offers.Add(s));
                 context.SaveChanges();
