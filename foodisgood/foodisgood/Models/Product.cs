@@ -9,6 +9,8 @@ namespace foodisgood.Models
     public class Product
     {
         [Key]
+        [Required]
+        [Display(Name = "Product")]
         public int ID { get; set; }
 
         [Required]
