@@ -1,10 +1,6 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
-using System.Data.Entity;
-using System.Web.UI.WebControls;
 
 namespace foodisgood.Models
 {
@@ -50,6 +46,8 @@ namespace foodisgood.Models
 
         public virtual ApplicationUser User { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
+
+        public string StarsAverage { get; set; }
 
     }
 }

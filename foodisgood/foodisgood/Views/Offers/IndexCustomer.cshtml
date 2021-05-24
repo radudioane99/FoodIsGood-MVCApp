@@ -147,6 +147,7 @@
                 <p><b>Expiration date:</b> @Html.DisplayFor(modelItem => item.EndTime) </p>
                 <p><b>Seller first name:</b> @Html.DisplayFor(modelItem => item.User.FirstName)</p>
                 <p><b>Seller last name:</b> @Html.DisplayFor(modelItem => item.User.LastName)</p>
+                <p><b>Seller stars average:</b> @Html.DisplayFor(modelItem => item.StarsAverage) <span>&#9733;</span> </p>
                 <button id="btn_buy" class="btn">
                     @Html.ActionLink("Buy Now", "PlaceOffer", "Orders", new { id = item.ID }, null)
                 </button>
