@@ -168,6 +168,30 @@
                                 {
                                     <img style="width:400px;height:300px;" src="/Content/Images/banana.png" alt="Paris">
                                 }
+                                @if (item.Product.Name == "Apples")
+                                {
+                                    <img style="width:400px;height:300px;" src="/Content/Images/apples2.png" alt="Paris">
+                                }
+                                @if (item.Product.Name == "Carrots")
+                                {
+                                    <img style="width:400px;height:300px;" src="/Content/Images/carrots.png" alt="Paris">
+                                }
+                                @if (item.Product.Name == "Cucumber")
+                                {
+                                    <img style="width:400px;height:300px;" src="/Content/Images/cucumber.png" alt="Paris">
+                                }
+                                @if (item.Product.Name == "Oranges")
+                                {
+                                    <img style="width:400px;height:300px;" src="/Content/Images/oranges.png" alt="Paris">
+                                }
+                                @if (item.Product.Name == "Pineapple")
+                                {
+                                    <img style="width:400px;height:300px;" src="/Content/Images/pineapple.png" alt="Paris">
+                                }
+                                @if (item.Product.Name == "Tomatoes")
+                                {
+                                    <img style="width:400px;height:300px;" src="/Content/Images/tomatoes.png" alt="Paris">
+                                }
 
                                 <p> @Html.DisplayFor(modelItem => item.Name)</p>
                                 <p><b>Offer started on:</b> @Html.DisplayFor(modelItem => item.CreateTime)</p>
