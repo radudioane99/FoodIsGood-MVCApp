@@ -2,57 +2,94 @@
 @model IEnumerable<foodisgood.Models.Order>
 @{ ViewBag.Title = "OrdersOfMyOffer"; }
 
-<h2>Index</h2>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Offer.Name)
-        </th>
-        <th>
-            Offer's Owner User Name
-            @*@Html.DisplayNameFor(model => model.Offer.User.UserName)*@
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Offer.PriceUnit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DesiredQuantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Accepted)
-        </th>
-        <th></th>
-    </tr>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<header class="w3-container w3-light-green w3-center" style="padding:128px 16px">
+    <h1 class="w3-margin w3-jumbo">Your own offer's orders:</h1>
+    <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">   @Html.ActionLink("Back to Offer", "MyOffers", "Offers")</button>
+</header>
+
+
+<div class="w3-row-padding w3-pale-yellow w3-padding-64 w3-container">
+
+
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Offer.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Offer.User.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Offer.PriceUnit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DesiredQuantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Accepted)
-            </td>
-            <td>
-                @Html.ActionLink("Delete", "DeleteOrder", "Orders", new { id = item.ID }, null) |
-                @Html.ActionLink("Accept Order", "AcceptOrder", "Orders", new { id = item.ID }, null) |
-                @Html.ActionLink("Complete Order", "CompleteOrder", "Orders", new { id = item.ID }, null)
-            </td>
-        </tr>
+        <div class="w3-third w3-row-padding" style="padding-bottom:20px;">
+            <div class="w3-container w3-sand w3-card-4 w3-row-padding">
+                <ul class="w3-ul w3-row-padding w3-margin-bottom">
+                    <li>
+                        <b>Offer title:</b> @Html.DisplayFor(modelItem => item.Offer.Name)
+                    </li>
+                    <li>
+                        <b>Offer's user's name:</b>  @Html.DisplayFor(modelItem => item.Offer.User.UserName)
+                    </li>
+                    <li>
+                        <b>Price/unit:</b>  @Html.DisplayFor(modelItem => item.Offer.PriceUnit)
+                    </li>
+                    <li>
+                        <b>Desired Quantity:</b> @Html.DisplayFor(modelItem => item.DesiredQuantity)
+                    </li>
+                    <li>
+
+                        @if (item.Accepted)
+                        {
+                            <div class="w3-container w3-center w3-round-xlarge w3-green" style="width:100%">
+                                <div class="w3-center w3-text-white">This order is accepted!</div>
+                            </div>
+
+                        }
+                        @if (!item.Accepted)
+                        {
+
+                            <div class="w3-container w3-center w3-round-xlarge w3-red" style="width:100%">
+                                <div class="w3-center w3-text-white">Not accepted yet.</div>
+                            </div>
+
+
+                        }
+
+                    </li>
+
+
+
+                </ul>
+                <ul class="w3-ul w3-border w3-hoverable ">
+                    <li class="w3-theme">Options:</li>
+
+                    @if (item.Accepted)
+                    {
+                        <div class="btn btn-default">
+                            @Html.ActionLink("Complete Order", "CompleteOrder", "Orders", new { id = item.ID }, null)
+                        </div>
+                        <div class="btn btn-default">
+                            @Html.ActionLink("Delete", "DeleteOrder", "Orders", new { id = item.ID }, null)
+                        </div>
+                    }
+
+                    @if (!item.Accepted)
+                    {
+                        <div class="btn btn-default">
+                            @Html.ActionLink("Accept Order", "AcceptOrder", "Orders", new { id = item.ID }, null)
+                        </div>
+                        <div class="btn btn-default">
+                            @Html.ActionLink("Delete", "DeleteOrder", "Orders", new { id = item.ID }, null)
+                        </div>
+                    }
+                </ul>
+                <br />
+            </div>
+        </div>
+
+
     }
+    </div>
 
-</table>
-
-<div>
-    @Html.ActionLink("Back to Offer", "MyOffers", "Offers")
-</div>

@@ -2,46 +2,50 @@
 @model IEnumerable<foodisgood.Models.Order>
 @{ ViewBag.Title = "MyOrders"; }
 
-<h2>Index</h2>
 
-<table class="table table-bordered table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Offer.Name)
-        </th>
-        <th>
-            Offer's Owner User Name
-            @*@Html.DisplayNameFor(model => model.Offer.User.UserName)*@
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Offer.PriceUnit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DesiredQuantity)
-        </th>
-        <th></th>
-    </tr>
 
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<header class="w3-container w3-light-green w3-center" style="padding:128px 16px">
+    <h1 class="w3-margin w3-jumbo">Your orders</h1>
+</header>
+<div class="w3-row-padding w3-pale-yellow w3-padding-64 w3-container">
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Offer.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Offer.User.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Offer.PriceUnit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DesiredQuantity)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "DeleteOrder", new { id = item.ID })
-        </td>
-    </tr>
+        <div class="w3-third w3-row-padding" style="padding-bottom:20px;">
+            <div class="w3-container w3-card-4 w3-row-padding">
+                <ul class="w3-ul w3-row-padding w3-margin-bottom">
+                    <li>
+                        <b>Offer title:</b>    @Html.DisplayFor(modelItem => item.Offer.Name)
+                    </li>
+                    <li>
+                        <b>Offer's user's name:</b>   @Html.DisplayFor(modelItem => item.Offer.User.Email)
+                    </li>
+                    <li>
+                        <b>Price/unit:</b>   @Html.DisplayFor(modelItem => item.Offer.PriceUnit)
+                    </li>
+                    <li>
+                        <b>Desired Quantity:</b> @Html.DisplayFor(modelItem => item.DesiredQuantity)
+                    </li>
+                    <li>
+                        <div class="btn btn-default">
+                            @Html.ActionLink("Details", "Details", new { id = item.ID })
+                        </div>
+                        <div class="btn btn-default">
+                            @Html.ActionLink("Delete", "DeleteOrder", new { id = item.ID })
+                        </div>
+                    </li>
+                </ul>
+
+                <br />
+            </div>
+        </div>
+
+
     }
 
-</table>
+    </div>

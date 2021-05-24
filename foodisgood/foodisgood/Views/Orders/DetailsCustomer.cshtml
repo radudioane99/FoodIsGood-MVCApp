@@ -1,44 +1,104 @@
 ﻿@model foodisgood.Models.Order
 
 @{ ViewBag.Title = "DetailsCustomer"; }
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
 
-<h2>Details</h2>
 
-<div>
-    <h4>Order</h4>
-    <hr />
-    <dl class="dl-horizontal">
+    .bg-img {
+        /* The image used */
+        background-image: url("/content/Images/05.png");
+        min-height: 580px;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Offer.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Offer.Name)
-        </dd>
+    /* Add styles to the form container */
+    .container2 {
+        position: relative;
+        right: 0;
+        top: 15px;
+        margin: 30px;
+        max-width: 400px;
+        padding: 26px;
+        background-color: white;
+        opacity: 0.8;
+        border-radius: 15px;
+    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Offer.User.UserName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Offer.User.Email)
-        </dd>
+        .container2:hover {
+            opacity: 1.0;
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Offer.PriceUnit)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Offer.PriceUnit)
-        </dd>
+    /* Full-width input fields */
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DesiredQuantity)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DesiredQuantity)
-        </dd>
+        input[type=text]:focus, input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
 
-    </dl>
+    /* Set a style for the submit button */
+
+
+    .btn:hover {
+        opacity: 1;
+    }
+</style>
+
+
+<div class="bg-img">
+    <div class="container2">
+        <div>
+            <h4>Order details</h4>
+            <hr />
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Offer.Name)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Offer.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Offer.User.UserName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Offer.User.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Offer.PriceUnit)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Offer.PriceUnit)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DesiredQuantity)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DesiredQuantity)
+                </dd>
+
+            </dl>
+        </div>
+        <div class="btn btn-default">
+            @Html.ActionLink("Back to List", "MyOrders", "Orders", null, null)
+        </div>
+
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Back to List", "MyOrders", "Orders", null, null)
-</p>
