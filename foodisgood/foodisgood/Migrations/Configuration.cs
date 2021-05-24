@@ -79,10 +79,10 @@ namespace foodisgood.Migrations
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);
-                var user1 = new ApplicationUser { UserName = "customerOne@Test.com", Email = "customerOne@Test.com", FirstName = "Adrian_1", LastName = "Petrica_1", Location = "Cluj" };
-                var user2 = new ApplicationUser { UserName = "customerTwo@Test.com", Email = "customerTwo@Test.com", FirstName = "Adrian_2", LastName = "Petrica_2", Location = "Cluj" };
-                var user3 = new ApplicationUser { UserName = "customerThree@Test.com", Email = "customerThree@Test.com", FirstName = "Adrian_3", LastName = "Petrica_3", Location = "Cluj" };
-                var admin = new ApplicationUser { UserName = "admin@Test.com", Email = "admin@Test.com", FirstName = "Admin", LastName = "Admin", Location = "Constanta" };
+                var user1 = new ApplicationUser {PhoneNumber = "0732848175", UserName = "customerOne@Test.com", Email = "customerOne@Test.com", FirstName = "Adrian_1", LastName = "Petrica_1", Location = "Cluj" };
+                var user2 = new ApplicationUser {PhoneNumber = "0732848175", UserName = "customerTwo@Test.com", Email = "customerTwo@Test.com", FirstName = "Adrian_2", LastName = "Petrica_2", Location = "Cluj" };
+                var user3 = new ApplicationUser {PhoneNumber = "0732848175", UserName = "customerThree@Test.com", Email = "customerThree@Test.com", FirstName = "Adrian_3", LastName = "Petrica_3", Location = "Cluj" };
+                var admin = new ApplicationUser {PhoneNumber = "0732848175", UserName = "admin@Test.com", Email = "admin@Test.com", FirstName = "Admin", LastName = "Admin", Location = "Constanta" };
 
                 manager.Create(user1, "123456");
                 manager.Create(user2, "123456");

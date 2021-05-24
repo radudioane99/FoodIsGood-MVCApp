@@ -10,24 +10,25 @@ namespace foodisgood.Models
         public int ID { get; set; }
 
         [Required]
-        [Display(Name = "Offer title")]
+        [Display(Name = "Title")]
         public string Name { get; set; }
 
         [Required]
-        [Display(Name = "Price per unit")]
+        [Display(Name = "Price")]
         public float PriceUnit { get; set; }
 
         [Required]
+        [Display(Name = "Quantity")]
         public float Quantity { get; set; }
 
         [Required]
-        [Display(Name = "Creation date")]
+        [Display(Name = "Creation Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime CreateTime { get; set; }
 
         [Required]
-        [Display(Name = "Expiration date")]
+        [Display(Name = "Expiration Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime EndTime { get; set; }
