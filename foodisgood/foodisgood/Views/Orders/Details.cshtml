@@ -24,7 +24,7 @@
         right: 0;
         top: 15px;
         margin: 30px;
-        max-width: 300px;
+        max-width: 600px;
         padding: 26px;
         background-color: white;
         opacity: 0.8;
@@ -109,8 +109,12 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    <div class="btn btn-default">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
+    </div>
+    <div class="btn btn-default">
+        @Html.ActionLink("Back to List", "Index")
+    </div>
 </p>
         </div>
 </div>

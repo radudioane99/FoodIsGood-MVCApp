@@ -3,16 +3,67 @@
 @{
     ViewBag.Title = "Edit";
 }
+<style>
 
-<h2>Edit</h2>
+
+    .bg-img {
+        /* The image used */
+        background-image: url("/content/Images/fundal_contact.jpg");
+        min-height: 580px;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+    /* Add styles to the form container */
+    .container2 {
+        position: relative;
+        right: 0;
+        top: 15px;
+        margin: 30px;
+        max-width: 600px;
+        padding: 26px;
+        background-color: white;
+        opacity: 0.8;
+        border-radius: 15px;
+    }
+
+        .container2:hover {
+            opacity: 1.0;
+        }
+
+    /* Full-width input fields */
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+    }
+
+        input[type=text]:focus, input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+    /* Set a style for the submit button */
 
 
+    .btn:hover {
+        opacity: 1;
+    }
+</style>
+
+<div class="bg-img">
+    <div class="container2">
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Product</h4>
+        <h4>Edit Product Name</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID)
@@ -28,15 +79,19 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
+                <div class="btn btn-default">
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+</div>
+</div>
