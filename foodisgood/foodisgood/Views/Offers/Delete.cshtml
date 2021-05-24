@@ -4,11 +4,65 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<style>
 
-<h3>Are you sure you want to delete this?</h3>
+
+    .bg-img {
+        /* The image used */
+        background-image: url("/content/Images/04.png");
+        min-height: 580px;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+    /* Add styles to the form container */
+    .container2 {
+        position: relative;
+        right: 0;
+        top: 15px;
+        margin: 30px;
+        max-width: 300px;
+        padding: 26px;
+        background-color: white;
+        opacity: 0.8;
+        border-radius: 15px;
+    }
+
+        .container2:hover {
+            opacity: 1.0;
+        }
+
+    /* Full-width input fields */
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+    }
+
+        input[type=text]:focus, input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+    /* Set a style for the submit button */
+
+
+    .btn:hover {
+        opacity: 1;
+    }
+</style>
+<h2>Delete offer</h2>
+
+
+<div class="bg-img">
+    <div class="container2">
 <div>
-    <h4>Offer</h4>
+    <h3>Are you sure you want to delete this?</h3>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -74,8 +128,13 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "MyOffers", new { id = Model.UserID}, null)
+            <input type="submit" value="Delete" class="btn btn-default" /> 
+            <div class="btn btn-default">
+                @Html.ActionLink("Back to List", "MyOffers", new { id = Model.UserID }, null)
+            </div>
         </div>
     }
 </div>
+        </div>
+    </div>
+

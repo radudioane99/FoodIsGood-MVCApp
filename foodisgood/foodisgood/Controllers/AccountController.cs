@@ -58,6 +58,10 @@ namespace foodisgood.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return View("~/Views/Home/Index.cshtml");
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }

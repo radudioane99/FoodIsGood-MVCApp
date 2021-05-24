@@ -2,72 +2,127 @@
 
 @{ ViewBag.Title = "DetailsCustomer"; }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Offer</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+<style>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PriceUnit)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PriceUnit)
-        </dd>
+    .bg-img {
+        /* The image used */
+        background-image: url("/content/Images/01.png");
+        min-height: 580px;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
+    /* Add styles to the form container */
+    .container2 {
+        position: relative;
+        right: 0;
+        top: 15px;
+        margin: 30px;
+        max-width: 400px;
+        padding: 26px;
+        background-color: white;
+        opacity: 0.8;
+        border-radius: 15px;
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
+        .container2:hover {
+            opacity: 1.0;
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateTime)
-        </dt>
+    /* Full-width input fields */
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.CreateTime)
-        </dd>
+        input[type=text]:focus, input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
+    /* Set a style for the submit button */
 
-        <dd>
-            @Html.DisplayFor(model => model.EndTime)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Expired)
-        </dt>
+    .btn:hover {
+        opacity: 1;
+    }
+</style>
+<div class="bg-img">
+    <div class="container2">
+        <h4>Offer details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Expired)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PriceUnit)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PriceUnit)
+            </dd>
 
-    </dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Quantity)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CreateTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreateTime)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EndTime)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Expired)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Expired)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <div class="btn btn-default">
+                
+                    @Html.ActionLink("Back to List", "MyOffers", "Offers", new { id = Model.ID }, null)
+               
+            </div>
+        </dl>
+    </div>
 </div>
 
-<p>
-    @Html.ActionLink("Back to List", "MyOffers", "Offers", new { id = Model.ID}, null)
-</p>
 

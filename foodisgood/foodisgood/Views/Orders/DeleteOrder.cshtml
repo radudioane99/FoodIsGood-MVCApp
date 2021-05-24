@@ -4,35 +4,118 @@
     ViewBag.Title = "DeleteOrder";
 }
 
-<h2>Details</h2>
+<style>
 
-<div>
-    <h4>Order</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.BuyerUser.UserName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BuyerUser.UserName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DesiredQuantity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DesiredQuantity)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @using (Html.BeginForm())
-    {
-        <input type="submit" name="response" value="Refuse" formaction=@Url.Action("DeleteOrder", "Orders") formmethod="post" class="btn btn-primary" />
-        <br />
-        <input type="submit" name="response" value="Back" formaction=@Url.Action("SeeOffers", "Offers", new { id = Model.OfferID}, null) formmethod="post" class="btn btn-primary" />
+    .bg-img {
+        /* The image used */
+        background-image: url("/content/Images/01.png");
+        min-height: 580px;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
     }
-</p>
+
+    /* Add styles to the form container */
+    .container2 {
+        position: relative;
+        right: 0;
+        top: 15px;
+        margin: 30px;
+        max-width: 300px;
+        padding: 26px;
+        background-color: white;
+        opacity: 0.8;
+        border-radius: 15px;
+    }
+
+        .container2:hover {
+            opacity: 1.0;
+        }
+
+    /* Full-width input fields */
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+    }
+
+        input[type=text]:focus, input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+    /* Set a style for the submit button */
+
+
+    .btn:hover {
+        opacity: 1;
+    }
+</style>
+
+
+
+
+<h2>Delete order</h2>
+
+
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+
+<div class="w3-display-container w3-content" style="max-width:1500px;">
+    <img class="w3-image" src="/Content/Images/09.png" alt="image" style="min-width:1000px" width="1500" height="800">
+    <div class="w3-display-middle w3-padding w3-col l6 m8">
+        <div class="w3-container w3-black">
+            <h2><i class="fa fa-cut w3-margin-right"></i> Delete order</h2>
+        </div>
+        <div class="w3-container w3-white w3-padding-16">
+           
+                <div class="w3-row-padding" style="margin:0 -16px;">
+                    <div class="w3-half w3-margin-bottom">
+                        <label><i class="fa fa-paperclip"></i> User Name</label>
+                        @Html.DisplayFor(model => model.BuyerUser.UserName)
+                    </div>
+                    <div class="w3-half">
+                        <label><i class="fa fa-paperclip"></i> Desired quantity</label><br />
+                        @Html.DisplayFor(model => model.DesiredQuantity)
+                    </div>
+                </div>
+
+
+
+
+                <br />
+
+                @*<input type="submit" name="response" value="Refuse" formaction=@Url.Action("DeleteOrder","Orders") formmethod="post" class="btn btn-primary" />*@
+            <p>
+                @using (Html.BeginForm())
+                {
+
+                    <div class="w3-row-padding" style="margin:8px -16px;">
+                        <div class="w3-half w3-margin-bottom">
+
+                            <input type="submit" name="response" value="Delete" formaction=@Url.Action("DeleteOrder", "Orders") formmethod="post" class="btn btn-primary" />
+                            <br />
+                        </div>
+                        <div class="w3-half">
+
+                            <input type="submit" name="response" value="Back" formaction=@Url.Action("SeeOrders", "Offers", new { id = Model.OfferID}) formmethod="post" class="btn btn-primary" />
+                        </div>
+                    </div>
+                }
+            </p>
+
+            
+        </div>
+    </div>
+</div>

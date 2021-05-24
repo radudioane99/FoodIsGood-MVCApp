@@ -1,6 +1,7 @@
 ﻿using foodisgood.Models;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -17,6 +18,13 @@ namespace foodisgood.Controllers
         // GET: Offers
         public ActionResult Index(string sortOrder, string searchString)
         {
+
+            // Recalculate stars average
+            List<Offer> offerList = db.Offers.ToList();
+            foreach (Offer offer in offerList)
+            {
+                offer.StarsAverage = this.GetStarsAverage(offer.UserID);
+            }
             // Show expired offers!
             var expiredOffers = db.Offers.Where(o => DateTime.Now > o.EndTime && o.Expired == false).ToList();
             if (expiredOffers.Any())
@@ -28,8 +36,8 @@ namespace foodisgood.Controllers
                     db.SaveChanges();
                 }
             }
-            // Done deleting.
 
+            // Done deleting.
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
             ViewBag.QuantitySortParm = sortOrder == "Quantity" ? "quantity_desc" : "Quantity";
@@ -37,10 +45,12 @@ namespace foodisgood.Controllers
             ViewBag.EndDateSortParm = sortOrder == "EndDate" ? "endDate_desc" : "EndDate";
 
             var offers = from s in db.Offers select s;
+
+            var ID = User.Identity.GetUserId();
             if (User.IsInRole("Customer"))
             {
-                offers = from s in db.Offers where s.Expired == false select s;
-            } 
+                offers = from s in db.Offers where s.Expired == false && s.UserID != ID select s;
+            }
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -82,7 +92,6 @@ namespace foodisgood.Controllers
                     offers = offers.OrderBy(s => s.Name);
                     break;
             }
-
 
             if (User.IsInRole("AppAdmin"))
             {
@@ -295,8 +304,6 @@ namespace foodisgood.Controllers
             return View(offer);
         }
 
-
-
         // GET: Offers/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -346,7 +353,20 @@ namespace foodisgood.Controllers
                 return HttpNotFound();
             }
             var offerOrders = db.Orders.Where(o => o.OfferID == id);
-            return View("~/Views/Orders/OrdersOfMyOffer.cshtml",offerOrders.ToList());
+            return View("~/Views/Orders/OrdersOfMyOffer.cshtml", offerOrders.ToList());
+        }
+        private string GetStarsAverage(string usrId)
+        {
+            List<Rewiew> userReviews = this.db.Rewiews.Where(x => x.UserID.Equals(usrId)).ToList();
+            float sum = 0;
+            int contor = 0;
+            foreach (Rewiew rewiew in userReviews)
+            {
+                contor++;
+                sum = sum + rewiew.note;
+            }
+            float average = (float)sum / contor;
+            return average.ToString("0.00");
         }
     }
 }

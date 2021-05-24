@@ -164,7 +164,7 @@ namespace foodisgood.Controllers
             Offer offer = db.Offers.Find(id);
             if (offer == null)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Offers");
             }
             else
             {

@@ -1,21 +1,24 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>About FoodIsGood</h2>
 
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div class="container">
-    <br />
-    <br />
-    <br />
-
-    <div class="alert alert-warning alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<header class="w3-container w3-green w3-center" style="padding:128px 16px">
+    <h1 class="w3-margin w3-jumbo">ABOUT Food Is Good - FAQ </h1>
+    <p class="w3-xlarge">
         This section contains a wealth of information, related to <strong>FoodIsGood App</strong> and its purpose. If you cannot find an answer to your question,
         make sure to contact us.
-    </div>
+    </p>
+</header>
 
-    <br />
+
+
+<div class="w3-light-green w3-container w3-row-padding w3-padding">
+   
 
     <div class="panel-group" id="accordion">
         <div class="faqHeader">General questions</div>
@@ -28,7 +31,7 @@
             <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body">
                     Account registration at <strong>FoodIsGood</strong> is required if you are buying or selling products.
-                    This ensures a valid communication channel for all parties involved in any transactions. 
+                    This ensures a valid communication channel for all parties involved in any transactions.
                 </div>
             </div>
         </div>
@@ -40,7 +43,7 @@
             </div>
             <div id="collapseTen" class="panel-collapse collapse">
                 <div class="panel-body">
-                    Al you need to have is a registered account and a trusty certificate. 
+                    Al you need to have is a registered account and a trusty certificate.
                 </div>
             </div>
         </div>
@@ -183,7 +186,8 @@
 
     .panel-heading [data-toggle="collapse"]:after {
         font-family: 'Glyphicons Halflings';
-        content: glyphicon-wrench; /* "play" icon */ float: right;
+        content: glyphicon-wrench; /* "play" icon */
+        float: right;
         color: #F58723;
         font-size: 18px;
         line-height: 22px;
