@@ -104,7 +104,7 @@ namespace foodisgood.Migrations
                 {
                     new Offer{UserID = users[0].Id, Name="Cheap bananas!", PriceUnit=2, Quantity=100, CreateTime=DateTime.Parse("2021-4-3"), EndTime=DateTime.Parse("2021-9-3"), Expired=false, Description="The tastiest bananas around!", ProductID=product[0].ID},
                     new Offer{UserID = users[1].Id, Name="My bananas are cheaper!", PriceUnit=4, Quantity=179, CreateTime=DateTime.Parse("2021-4-6"), EndTime=DateTime.Parse("2023-9-3"), Expired=false, Description="Just a poor boy trying to sell bananas...", ProductID=product[0].ID},
-                    new Offer{UserID = users[2].Id, Name="Can't find cheaper bananas anywhere!", PriceUnit=2, Quantity=163, CreateTime=DateTime.Parse("2021-4-18"), EndTime=DateTime.Parse("2022-9-3"), Expired=false, Description="Lovely products!", ProductID=product[0].ID},
+                    new Offer{UserID = users[2].Id, Name="Cheapest bananas, truly!", PriceUnit=2, Quantity=163, CreateTime=DateTime.Parse("2021-4-18"), EndTime=DateTime.Parse("2022-9-3"), Expired=false, Description="Lovely products!", ProductID=product[0].ID},
                     new Offer{UserID = users[0].Id, Name="Cheapest bananas in town!", PriceUnit=3.5F, Quantity=24, CreateTime=DateTime.Parse("2021-4-4"), EndTime=DateTime.Parse("2025-9-3"), Expired=false, Description="Amazing products!", ProductID=product[0].ID},
                     new Offer{UserID = users[0].Id, Name="Lovely bananas!", PriceUnit=4, Quantity=35, CreateTime=DateTime.Parse("2021-4-2"), EndTime=DateTime.Parse("2021-8-3"), Expired=false, Description="Our delivery is fantastic! Contact us at: banciuadrian@gmail.com", ProductID=product[0].ID},
                 };

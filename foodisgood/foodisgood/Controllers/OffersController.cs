@@ -337,7 +337,13 @@ namespace foodisgood.Controllers
             db.SaveChanges();
             string id_string = id.ToString();
             var myOffers = db.Offers.Where(o => o.UserID.Equals(id_string));
-            return RedirectToAction("MyOffers", myOffers.ToList());
+
+
+            if (User.IsInRole("Customer"))
+            {
+                return RedirectToAction("MyOffers", myOffers.ToList());
+            }
+            return View("Index", db.Offers.ToList());
         }
 
         protected override void Dispose(bool disposing)
