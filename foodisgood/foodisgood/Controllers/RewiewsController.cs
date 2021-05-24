@@ -51,16 +51,24 @@ namespace foodisgood.Controllers
             string note = form["Note"];
             var user = db.Users.Where(x => x.Email.Equals(this.User.Identity.Name)).FirstOrDefault();
             var userReviewed = db.Users.Where(x => x.Id.Equals(id)).FirstOrDefault();
-            Rewiew rewiew = new Rewiew();
-            rewiew.UserID = id;
-            rewiew.Text = text;
-            rewiew.date = DateTime.Now;
-            rewiew.note = Convert.ToInt32(note);
-            rewiew.UserReviewer = user.Id;
-            rewiew.ReviewerFirstname = user.FirstName;
-            rewiew.ReviewerLastname = user.LastName;
-            db.Rewiews.Add(rewiew);
-            db.SaveChanges();
+            if (user != null)
+            {
+                Rewiew rewiew = new Rewiew();
+                rewiew.UserID = id;
+                rewiew.Text = text;
+                rewiew.date = DateTime.Now;
+                rewiew.note = Convert.ToInt32(note);
+
+                rewiew.UserReviewer = user.Id;
+                rewiew.ReviewerFirstname = user.FirstName;
+                rewiew.ReviewerLastname = user.LastName;
+                db.Rewiews.Add(rewiew);
+                db.SaveChanges();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Manage");
+            }
             var rewiews = db.Rewiews.ToList();
             var userRewiews = rewiews.Where(x => x.UserID == id);
             reviewModel.rewiews = userRewiews;
