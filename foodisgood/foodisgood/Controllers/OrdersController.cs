@@ -328,10 +328,11 @@ namespace foodisgood.Controllers
         public ActionResult DeleteOrderConfirmed(int id)
         {
             Order order = db.Orders.Find(id);
+            int offerID = order.OfferID;
             order.Offer.Quantity += order.DesiredQuantity;
             db.Orders.Remove(order);
             db.SaveChanges();
-            return RedirectToAction("MyOrders");
+            return RedirectToAction("SeeOrders", "Offers", new { id = offerID});
         }
 
         protected override void Dispose(bool disposing)
