@@ -71,7 +71,17 @@
                         <b>Description:</b> @Html.DisplayFor(modelItem => item.Description)
                     </li>
 
-
+                    <li>
+                        <b>Number of orders: </b> 
+                        @{
+                            int count = 0;
+                            foreach(var i in item.Orders)
+                            {
+                                count++;
+                            }
+                            @count
+                        }
+                    </li>
 
                 </ul>
                 <ul class="w3-ul w3-border w3-hoverable ">
