@@ -23,7 +23,15 @@ namespace foodisgood.Controllers
             List<Offer> offerList = db.Offers.ToList();
             foreach (Offer offer in offerList)
             {
-                offer.StarsAverage = this.GetStarsAverage(offer.UserID);
+                var result = this.GetStarsAverage(offer.UserID);
+                if (this.GetStarsAverage(offer.UserID).Equals("NaN"))
+                {
+                    offer.StarsAverage = "0.00";
+                }
+                else
+                {
+                    offer.StarsAverage = result;
+                }
             }
             // Show expired offers!
             var expiredOffers = db.Offers.Where(o => DateTime.Now > o.EndTime && o.Expired == false).ToList();

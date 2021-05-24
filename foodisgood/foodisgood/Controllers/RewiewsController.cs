@@ -19,7 +19,15 @@ namespace foodisgood.Controllers
             reviewModel.userId = offer.UserID;
             reviewModel.PersonFirstname = userReviewed.FirstName;
             reviewModel.PersonLastname = userReviewed.LastName;
-            reviewModel.StarsAverage = this.GetStarsAverage(offer.UserID);
+            if (this.GetStarsAverage(offer.UserID).Equals("NaN"))
+            {
+                reviewModel.StarsAverage = "0.00";
+            }
+            else
+            {
+                reviewModel.StarsAverage = this.GetStarsAverage(offer.UserID);
+            }
+
             if (offer.UserID != null)
             {
                 var rewiews = db.Rewiews.ToList();
