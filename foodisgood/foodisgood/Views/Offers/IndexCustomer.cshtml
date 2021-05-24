@@ -2,19 +2,10 @@
 
 @{ ViewBag.Title = "IndexCustomer"; }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create Your Own Offer", "CreateCustomer")
-</p>
 
-@using (Html.BeginForm())
-{
-    <p>
-        Find by name: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
-}
+
+
 @*
     <table class="table">
 
@@ -47,7 +38,10 @@
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -82,55 +76,107 @@
     }
 </style>
 
+<header class="w3-container w3-light-green w3-center" style="padding:128px 16px">
+    <h1 class="w3-margin w3-jumbo">Last offers appeared on the website:</h1>
 
-<div class="container">
-    <img src="/content/images/cover4.png" style="width:100%">
-    <div class="content">
-        <h4>Healthy food</h4>
-        <p>Healthy life</p>
-    </div>
+    <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top">  @Html.ActionLink("Create Your Own Offer", "CreateCustomer")</button>
+</header>
+
+
+<div class="w3-row-padding w3-center w3-light-green w3-opacity w3-padding-64 w3-container">
+    @using (Html.BeginForm())
+    {
+        <p>
+            Find by name: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
 </div>
 
 
-<h2>Last offers appeared on the website:</h2>
-<br />
 
 
-@foreach (var item in Model)
-{
 
-    <div class="col-sm-3">
-        <div class="thumbnail">
+<div class="w3-row-padding w3-center w3-pale-yellow w3-padding-64 w3-container">
 
-            <img src="/Content/Images/tomatoes.png" alt="Paris">
-            <p><strong> @Html.DisplayFor(modelItem => item.Name)</strong></p>
-            <p>Selling: @Html.DisplayFor(modelitem => item.Product.Name) </p>
-            <p>Quantity: @Html.DisplayFor(modelitem => item.Quantity) </p>
-            <p>Price: @Html.DisplayFor(modelItem => item.PriceUnit) RON/KG</p>
-            <p>Expiration date: @Html.DisplayFor(modelItem => item.EndTime) </p>
-            <p>Seller first name: @Html.DisplayFor(modelItem => item.User.FirstName)</p>
-            <p>Seller last name: @Html.DisplayFor(modelItem => item.User.LastName)</p>
-            <button id="btn_buy" class="btn">
-                @Html.ActionLink("Buy Now", "PlaceOffer", "Orders", new { id = item.ID}, null)
-            </button>
-            <button id="btn_buy" class="btn">
-                @Html.ActionLink("See Seller Rewiews", "GetSellerRewiews", "Rewiews", new { id = item.ID }, null)
-            </button>
 
-            <button type="button" class="btn" data-toggle="modal" data-target="#@Html.DisplayFor(modelItem => item.ID)">Description</button>
+    @foreach (var item in Model)
+    {
 
-            <div class="modal fade" id="@Html.DisplayFor(modelItem => item.ID)" role="dialog">
-                <div class="modal-dialog">
+        <div class="col-sm-3">
+            <div class="thumbnail w3-sand">
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <p> @Html.DisplayFor(modelItem => item.Name)</p>
-                            <p>Offer started on: @Html.DisplayFor(modelItem => item.CreateTime)</p>
-                            <p>@Html.DisplayFor(modelItem => item.Description)</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                @if (item.Product.Name=="Banana")
+                {
+                    <img src="/Content/Images/banana.png" alt="Paris">
+                }
+                @if (item.Product.Name == "Apples")
+                {
+                    <img src="/Content/Images/apples2.png" alt="Paris">
+                }
+                @if (item.Product.Name == "Carrots")
+                {
+                    <img src="/Content/Images/carrots.png" alt="Paris">
+                }
+                @if (item.Product.Name == "Cucumber")
+                {
+                    <img src="/Content/Images/cucumber.png" alt="Paris">
+                }
+                @if (item.Product.Name == "Oranges")
+                {
+                    <img src="/Content/Images/oranges.png" alt="Paris">
+                }
+                @if (item.Product.Name == "Pineapple")
+                {
+                    <img src="/Content/Images/pineapple.png" alt="Paris">
+                }
+                @if (item.Product.Name == "Tomatoes")
+                {
+                    <img src="/Content/Images/tomatoes.png" alt="Paris">
+                }
+
+               
+
+
+
+                <p><strong> @Html.DisplayFor(modelItem => item.Name)</strong></p>
+                <p><b>Selling:</b> @Html.DisplayFor(modelitem => item.Product.Name) </p>
+                <p><b>Quantity:</b> @Html.DisplayFor(modelitem => item.Quantity) </p>
+                <p><b>Price:</b> @Html.DisplayFor(modelItem => item.PriceUnit) RON / KG</p>
+                <p><b>Expiration date:</b> @Html.DisplayFor(modelItem => item.EndTime) </p>
+                <p><b>Seller first name:</b> @Html.DisplayFor(modelItem => item.User.FirstName)</p>
+                <p><b>Seller last name:</b> @Html.DisplayFor(modelItem => item.User.LastName)</p>
+                <button id="btn_buy" class="btn">
+                    @Html.ActionLink("Buy Now", "PlaceOffer", "Orders", new { id = item.ID }, null)
+                </button>
+                <button id="btn_buy" class="btn">
+                    @Html.ActionLink("See Seller Rewiews", "GetSellerRewiews", "Rewiews", new { id = item.ID }, null)
+                </button>
+
+                <button type="button" class="btn" data-toggle="modal" data-target="#@Html.DisplayFor(modelItem => item.ID)">Description</button>
+
+                <div class="modal fade" id="@Html.DisplayFor(modelItem => item.ID)" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-body">
+
+                                @if (item.Product.Name == "Banana")
+                                {
+                                    <img style="width:400px;height:300px;" src="/Content/Images/banana.png" alt="Paris">
+                                }
+
+                                <p> @Html.DisplayFor(modelItem => item.Name)</p>
+                                <p><b>Offer started on:</b> @Html.DisplayFor(modelItem => item.CreateTime)</p>
+                                <p><b>Offer will end on:</b> @Html.DisplayFor(modelItem => item.CreateTime)</p>
+                                <p><b>Description:</b>@Html.DisplayFor(modelItem => item.Description)</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+
                         </div>
 
                     </div>
@@ -139,6 +185,5 @@
 
             </div>
 
-        </div>
-
-    </div>}
+        </div>}
+    </div>

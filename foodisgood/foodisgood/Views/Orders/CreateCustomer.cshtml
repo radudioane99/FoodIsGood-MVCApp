@@ -5,15 +5,78 @@
 }
 
 <head>
+
+    <style>
+
+
+        .bg-img {
+            /* The image used */
+            background-image: url("/content/Images/fundal_contact.jpg");
+            min-height: 1080px;
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        /* Add styles to the form container */
+        .container2 {
+            position: relative;
+            right: 0;
+            top: 15px;
+            margin: 10px;
+            max-width: 500px;
+            min-height: 980px;
+            padding: 10px;
+            background-color: white;
+            opacity: 0.8;
+            border-radius: 15px;
+        }
+
+            .container2:hover {
+                opacity: 1.0;
+            }
+
+        /* Full-width input fields */
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+        }
+
+            input[type=text]:focus, input[type=password]:focus {
+                background-color: #ddd;
+                outline: none;
+            }
+
+        /* Set a style for the submit button */
+
+
+        .btn:hover {
+            opacity: 1;
+        }
+    </style>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<h2>Create</h2>
+<header class="w3-container w3-light-green w3-center" style="padding:128px 16px">
+    <h1 class="w3-margin w3-jumbo">Place Order</h1>
+
+</header>
+
 
 
 
 <body>
-    <div>
+    <div class="w3-bar w3-sand w3- w3-left-align w3-large">
+
         <table class="table">
             <tr class="dl-horizontal">
                 <th>
@@ -60,15 +123,7 @@
                     @Html.DisplayFor(model => model.Offer.EndTime)
                 </th>
             </tr>
-            <tr class="dl-horizontal">
-                <th>
-                    @Html.DisplayNameFor(model => model.Offer.Expired)
-                </th>
-
-                <th>
-                    @Html.DisplayFor(model => model.Offer.Expired)
-                </th>
-            </tr>
+           
             <tr class="dl-horizontal">
                 <th>
                     @Html.DisplayNameFor(model => model.Offer.Description)
@@ -80,113 +135,117 @@
             </tr>
         </table>
     </div>
-    <div>
-        <br />
-        <div class="form-group">
-            Your data:
-        </div>
-        <br />
-        <div class="form-group">
-            @Html.LabelFor(model => model.Order.BuyerUser.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Order.BuyerUser.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Order.BuyerUser.FirstName, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Order.BuyerUser.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Order.BuyerUser.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Order.BuyerUser.LastName, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Order.BuyerUser.Location, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Order.BuyerUser.Location, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Order.BuyerUser.Location, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Order.BuyerUser.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Order.BuyerUser.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Order.BuyerUser.PhoneNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Order.BuyerUser.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Order.BuyerUser.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Order.BuyerUser.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <br />
-        <div class="form-group">
-            Seller data:
-        </div>
-        <br />
-        <div class="form-group">
-            @Html.LabelFor(model => model.Offer.User.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Offer.User.FirstName, new { disabled = "disabled", @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Offer.User.FirstName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Offer.User.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Offer.User.LastName, new { disabled = "disabled", @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Offer.User.LastName, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Offer.User.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Offer.User.PhoneNumber, new { disabled = "disabled", @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Offer.User.PhoneNumber, "", new { @class = "text-danger" })
+    <div class="bg-img">
+        <div class="container2">
+            <br />
+            <div class=" w3-center form-group">
+                <h3>Data you have to provide for the order:</h3>
             </div>
-        </div>
-        <br />
-
-        <h4>Create an order:</h4>
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            <h4>Order</h4>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Order.BuyerUser.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Order.BuyerUser.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Order.BuyerUser.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Order.DesiredQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Order.BuyerUser.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Order.DesiredQuantity, new { htmlAttributes = new { @class = "form-control", min = "1" } })
-                    @Html.ValidationMessageFor(model => model.Order.DesiredQuantity, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Order.BuyerUser.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Order.BuyerUser.LastName, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div hidden class="form-group">
-                @Html.LabelFor(model => model.Order.OfferID, "OfferID", htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Order.BuyerUser.Location, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Order.OfferID, new { disabled = "disabled", @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Order.OfferID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div hidden class="form-group">
-                @Html.LabelFor(model => model.Order.BuyerUserID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Order.BuyerUserID, new { disabled = "disabled", @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Order.BuyerUserID, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Order.BuyerUser.Location, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Order.BuyerUser.Location, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" name="response" value="Place Order" formaction=@Url.Action("PostOrderToOffer", "Orders") formmethod="post" class="btn btn-primary" />
+                @Html.LabelFor(model => model.Order.BuyerUser.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Order.BuyerUser.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Order.BuyerUser.PhoneNumber, "", new { @class = "text-danger" })
                 </div>
             </div>
-        }
+            <div class="form-group">
+                @Html.LabelFor(model => model.Order.BuyerUser.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Order.BuyerUser.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Order.BuyerUser.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                Seller data:
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Offer.User.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Offer.User.FirstName, new { disabled = "disabled", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Offer.User.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Offer.User.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Offer.User.LastName, new { disabled = "disabled", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Offer.User.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Offer.User.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Offer.User.PhoneNumber, new { disabled = "disabled", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Offer.User.PhoneNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <h4>Order</h4>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Order.DesiredQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Order.DesiredQuantity, new { htmlAttributes = new { @class = "form-control", min = "1" } })
+                        @Html.ValidationMessageFor(model => model.Order.DesiredQuantity, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div hidden class="form-group">
+                    @Html.LabelFor(model => model.Order.OfferID, "OfferID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Order.OfferID, new { disabled = "disabled", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Order.OfferID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div hidden class="form-group">
+                    @Html.LabelFor(model => model.Order.BuyerUserID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Order.BuyerUserID, new { disabled = "disabled", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Order.BuyerUserID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" name="response" value="Place Order" formaction=@Url.Action("PostOrderToOffer", "Orders") formmethod="post" class="btn btn-primary" />
+                    </div>
+                </div>
+            }
+        </div>
     </div>
-
 
 </body>
 

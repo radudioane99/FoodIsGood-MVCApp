@@ -2,81 +2,118 @@
 @{
     ViewBag.Title = "Manage";
 }
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<h2>@ViewBag.Title.</h2>
 
+<h2>@ViewBag.Title Account</h2>
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Change your account settings</h4>
+  
     <hr />
-    <dl class="dl-horizontal">
-
-        <dt>Email:</dt>
-        <dd>
-            @(Model.Email ?? "None")
-            @if (Model.HasEmail)
-            {
-                <br />
-                <text>@Html.ActionLink("Change", "AddEmail")</text>
-            }
-            else
-            {
-                <text>@Html.ActionLink("Add", "AddEmai")</text>
-            }
-        </dd>
-
-        <dt>First Name:</dt>
-        <dd>@(Model.FirstName ?? "None")</dd>
-        <dt>Last Name:</dt>
-        <dd>@(Model.LastName ?? "None")</dd>
-        <dt>Location:</dt>
-        <dd>@(Model.Location ?? "None")</dd>
-        <dd>
-        @if (Model.FirstName != null && Model.LastName != null && Model.Location != null)
-        {
-            <text>@Html.ActionLink("Change", "AddCommon")</text>
-        }
-        else
-        {
-            <text>@Html.ActionLink("Add", "AddFirstName")</text>
-        }
-        </dd>
-
-
-        <dt>Password:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-            ]
-        </dd>
-
-
-        <dt>Phone Number:</dt>
-        <dd>
-            @(Model.PhoneNumber ?? "None")
-            @if (Model.PhoneNumber != null)
-            {
-                <br />
-                <text>@Html.ActionLink("Change", "AddPhoneNumber")</text>
-                using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
-                }
-            }
-            else
-            {
-                <text>@Html.ActionLink("Add", "AddPhoneNumber")</text>
-            }
-        </dd>
-
-
-    </dl>
+    
 </div>
+
+
+
+<header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
+    <img class="w3-image" src="~/Content/Images/10.png" alt="London" width="1500" height="700">
+    <div class="w3-display-middle" style="width:65%">
+        <div class="w3-bar w3-black">
+            <h4><div class="w3-padding fa fa-cog"></div>   Change your account settings</h4>
+        </div>
+
+
+
+
+
+        <div id="Hotel" class="w3-container w3-white w3-padding-16 myLink">
+            <dl class="dl-horizontal">
+
+                <dt>Email:</dt>
+                <dd> @(Model.Email ?? "None")</dd>
+
+                <dt>First Name:</dt>
+                <dd>@(Model.FirstName ?? "None")</dd>
+                <dt>Last Name:</dt>
+                <dd>@(Model.LastName ?? "None")</dd>
+                <dt>Location:</dt>
+                <dd>@(Model.Location ?? "None")</dd>
+
+
+
+                <dt>Password:</dt>
+                <dd></dd>
+
+
+
+                <dt>Phone Number:</dt> <dd>@(Model.PhoneNumber ?? "None")</dd>
+
+
+
+            </dl>
+
+            <hr />
+            <div class="btn btn-default">
+
+                @if (Model.HasPassword)
+                {
+                    @Html.ActionLink("Change password", "ChangePassword")
+                }
+                else
+                {
+                    @Html.ActionLink("Create password", "SetPassword")
+                }
+
+            </div>
+
+            <div class="btn btn-default">
+
+                @if (Model.FirstName != null && Model.LastName != null && Model.Location != null)
+                {
+                    <text>@Html.ActionLink("Change name or location", "AddCommon")</text>
+                }
+                else
+                {
+                    <text>@Html.ActionLink("Add", "AddFirstName")</text>
+                }
+            </div>
+            <div class="btn btn-default">
+               
+                @if (Model.PhoneNumber != null)
+                {
+                    <br />
+                    <text>@Html.ActionLink("Change phone number", "AddPhoneNumber")</text>
+                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
+                    }
+                }
+                else
+                {
+                    <text>@Html.ActionLink("Add phone number", "AddPhoneNumber")</text>
+                }
+            </div>
+            <div class="btn btn-default">
+               
+                @if (Model.HasEmail)
+                {
+                   
+                    <text>@Html.ActionLink("Change email", "AddEmail")</text>
+                }
+                else
+                {
+                    <text>@Html.ActionLink("Add email", "AddEmai")</text>
+                }
+            </div>
+
+
+
+
+
+
+            </div>
+
+</header>
